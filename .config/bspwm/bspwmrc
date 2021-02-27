@@ -1,0 +1,49 @@
+#! /bin/sh
+
+export DESKTOP_SESSION="bspwm"
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+#setta il wallpaper
+nitrogen --restore 
+
+#fai partire il compositor
+picom &
+
+#fai partire il polkit agent (uso quello di kde)
+/usr/lib/polkit-kde-authentication-agent-1 &
+
+#disabilita mouse acceleration
+xinput --set-prop "Logitech G203 Prodigy Gaming Mouse" 'libinput Accel Profile Enabled' 0, 1
+
+#killa una possibile istanza precedente di polybar e poi fallo ripartire
+pkill polybar
+~/.config/polybar/current/launch.sh
+
+#imposta lo screensaver a 30 minuti
+xset s off
+xset dpms 0 0 3600
+
+#fai partire redshift
+pkill redshift-gtk
+redshift-gtk -t 6500:4700 &
+
+bspc monitor -d dev www sys doc vid hid
+
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config focused_border_color "#43a047"
+
+bspc rule -a Gimp state=floating follow=on
+bspc rule -a firefox follow=on
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bspc rule -a Pavucontrol state=floating
+bspc rule -a mpv state=floating
+bspc rule -a dolphin state=pseudo_tiled
+bspc rule -a zoom state=floating
