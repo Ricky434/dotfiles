@@ -133,4 +133,5 @@ precmd() {
 }
 # ------
 
-bat /mnt/duck/Linux_Stuff/fare.txt
+#bat /mnt/duck/Linux_Stuff/fare.txt
+fortune -s | cowsay
