@@ -1,0 +1,33 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+super + Return
+	alacritty
+
+# program launcher
+super + @space
+	/home/jelly/.config/polybar/current_kde/scripts/launcher.sh
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd; notify-send 'sxhkd' 'Reloaded config'
+
+# change input language (toggle between us and intl)
+super + alt + space
+	setxkbmap {us intl, us}
+
+# Show help
+super + slash
+    ~/.config/polybar/current_kde/sxhkd/sxhkd-help
+
+# minimize window
+#super + e (nelle impostazioni di kwin di plasma)
+
+# focus or send to given desktop
+#come bspwm, ma nelle impostazioni di kwin di plasma
+
+# focus next/previous desktop
+#come bspwwm, ma nelle impostazioni di kwin di plasma
+
