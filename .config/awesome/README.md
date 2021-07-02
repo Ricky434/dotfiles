@@ -1,6 +1,6 @@
 <h1 align="center"> ✨ AwesomeShell</h1>
 
-This is a collection of [awesome wm](https://awesomewm.org/) configuration files
+Modified version of [Mofiqul](https://github.com/Mofiqul)'s collection of [awesome wm](https://awesomewm.org/) configuration files, so this Readme might not be 100% accurate
 
 ![Screen shot](./screen-shots/glassy1.png)
 
