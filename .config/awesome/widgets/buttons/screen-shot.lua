@@ -392,6 +392,10 @@ local screeh_shot_tool = function (s)
 		end
 	end)
 
+
+	local background = screen_shot_button:get_children_by_id("background")[1]
+	background:set_bg(beautiful.button_active_alt)
+
 	return screen_shot_button
 end
 

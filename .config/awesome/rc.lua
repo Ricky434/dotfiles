@@ -106,6 +106,9 @@ awful.screen.connect_for_each_screen(function(s)
 				indicatori["cpu"],
 				indicatori["sep"],
 
+				indicatori["temp"],
+				indicatori["sep"],
+
 				indicatori["ricon"],
 				indicatori["ram"],
 				indicatori["sep"],

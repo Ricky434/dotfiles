@@ -12,8 +12,8 @@ fi
 
 IF=$1
 
-#while true
-#do
+while true
+do
         R1=`cat /sys/class/net/$1/statistics/rx_bytes`
         T1=`cat /sys/class/net/$1/statistics/tx_bytes`
         sleep 1
@@ -24,4 +24,4 @@ IF=$1
         TKBPS=`expr $TBPS / 1024`
         RKBPS=`expr $RBPS / 1024`
         echo " $TKBPS kB/s   $RKBPS kB/s"
-#done
+done

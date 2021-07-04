@@ -6,17 +6,18 @@ local config_dir = filesystem.get_configuration_dir()
 local default_apps = require("configurations.default-apps")
 local startup_apps = {
 	-- "picom -b --experimental-backends --config " .. config_dir .. "configurations/picom.conf",
-    "picom",
+    "picom &",
 	--"udiskie",
 	--"xidlehook --not-when-fullscreen --not-when-audio  --timer 300 'xbacklight -set 1' 'xbacklight -set 50' --timer 60 'xbacklight -set 50;" ..default_apps.lock_screen .." ' '' --timer 900 'systemctl suspend'  ''",
 	-- "$HOME/.local/bin/xinput-tab",
 	-- "xbacklight -set 45",
     -- Add your startup programs here
+    "/usr/lib/polkit-kde-authentication-agent-1",
     "xinput --set-prop \"Logitech G203 Prodigy Gaming Mouse\" 'libinput Accel Profile Enabled' 0, 1",
     "xset s off; xset dpms 0 0 3600",
     "nm-applet --indicator",
     "pasystray",
-    "pkill redshift; redshift-gtk -t 6500:4700 -l 0.0:0.0"
+    "redshift-gtk -t 6500:4700 -l 0.0:0.0"
 }
 
 

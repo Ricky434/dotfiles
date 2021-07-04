@@ -74,10 +74,10 @@ local control_center = function (s)
 	}
 	-- unisco cosa mi serve davvero delle due rows
 	local button_row_12 = wibox.widget{
-		require("widgets.buttons.dnd"),
-		require("widgets.buttons.redshift"),
-		require("widgets.buttons.global-floating-mode"),
 		require("widgets.buttons.screen-shot")(s),
+		require("widgets.buttons.redshift"),
+		require("widgets.buttons.dnd"),
+		require("widgets.buttons.global-floating-mode"),
 		spacing = beautiful.widget_margin,
 		layout = wibox.layout.fixed.horizontal
 	}
