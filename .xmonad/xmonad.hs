@@ -132,9 +132,10 @@ myStartupHook = do
           -- spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x282c34  --height 22 &"
           spawnOnce "xinput --set-prop \"Logitech G203 Prodigy Gaming Mouse\" 'libinput Accel Profile Enabled' 0, 1 &"
           spawnOnce "xset s off; xset dpms 0 0 3600 &"
-          spawnOnce "pkill redshift-gtk; redshift-gtk -t 6500:4700 &"
+          spawnOnce "pkill redshift; redshift-gtk -t 6500:4700 &"
           spawnOnce "/usr/lib/polkit-kde-authentication-agent-1 &"
           spawnOnce "polybar -q bottom -c $HOME/.config/polybar/current/config.ini &"
+          spawnOnce "nm-applet --indicator &"
           setWMName "XMONAD"
 
 ------------------------------------------------------------------------
@@ -258,7 +259,7 @@ searchList = [ ("a", archwiki)
 
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
-                , NS "mocp" spawnMocp findMocp manageMocp
+                , NS "firefox" spawnMocp findMocp manageMocp
                 ]
   where
     spawnTerm  = myTerminal ++ " --name scratchpad"
@@ -269,8 +270,8 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                  w = 0.9
                  t = 0.95 -h
                  l = 0.95 -w
-    spawnMocp  = myTerminal ++ " -n mocp 'mocp'"
-    findMocp   = resource =? "mocp"
+    spawnMocp  = "firefox -P scratchpad --class firefox-scratchpad"
+    findMocp   = className =? "firefox-scratchpad"
     manageMocp = customFloating $ W.RationalRect l t w h
                where
                  h = 0.9
@@ -320,7 +321,7 @@ grid     = renamed [Replace "grid"]
            $ addTabs shrinkText myTabTheme
            -- $ subLayout [] (smartBorders Simplest)
            $ limitWindows 12
-           $ mySpacing 0
+           $ mySpacing 6
            $ mkToggle (single MIRROR)
            $ Grid (16/10)
 spirals  = renamed [Replace "spirals"]
@@ -383,7 +384,7 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
                                  ||| smartBorders threeRow
 
 -- myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
-myWorkspaces = [" dev ", " www ", " sys ", " doc ", " vbox ", " chat ", " mus ", " vid ", " gfx ", "NSP"] -- il workspace "NSP" e' quello dello scratchpad
+myWorkspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "] -- il workspace "NSP" e' quello dello scratchpad
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
 
 clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
@@ -398,6 +399,7 @@ myManageHook = composeAll
      , className =? "Gimp"    --> doShift ( myWorkspaces !! 8 )
      , className =? "Gimp"    --> doFloat
      , className =? "gufw"    --> doFloat
+     , className =? "Pavucontrol"    --> doFloat
      -- , title =? "Mozilla Firefox"     --> viewShift ( myWorkspaces !! 1 )
      -- , className =? "VirtualBox Manager" --> viewShift  ( myWorkspaces !! 4 )
      , (className =? "firefox" <&&> resource =? "Dialog") --> doFloat  -- Float Firefox Dialog
@@ -418,7 +420,7 @@ myKeys =
     -- Run Prompt
         -- , ("M-S-<Return>", shellPrompt dtXPConfig) -- Xmonad Shell Prompt
         -- , ("M-S-<Return>", spawn "dmenu_run -i -p \"Run: \"") -- Dmenu
-        , ("M-S-<Return>", spawn "rofi -show drun -config ~/.config/rofi/themes/dt-dmenu.rasi -display-drun \"Run: \" -drun-display-format \"{name}\"") -- Rofi
+        , ("M-<Space>", spawn "rofi -show drun -config ~/.config/rofi/themes/dt-dmenu.rasi -display-drun \"Run: \" -drun-display-format \"{name}\"") -- Rofi
 
     -- Other Prompts
         , ("M-p c", calcPrompt dtXPConfig' "qalc") -- calcPrompt
@@ -471,7 +473,7 @@ myKeys =
         , ("M-<Tab>", sendMessage NextLayout)           -- Switch to next layout
         , ("M-C-M1-<Up>", sendMessage Arrange)
         , ("M-C-M1-<Down>", sendMessage DeArrange)
-        , ("M-<Space>", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
+        , ("M-S-<Return>", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts) -- Toggles noborder/full
         , ("M-S-<Space>", sendMessage ToggleStruts)     -- Toggles struts
         , ("M-S-n", sendMessage $ MT.Toggle NOBORDERS)  -- Toggles noborder
 
@@ -496,12 +498,12 @@ myKeys =
         , ("M-C-m", withFocused (sendMessage . MergeAll))
         , ("M-C-u", withFocused (sendMessage . UnMerge))
         , ("M-C-/", withFocused (sendMessage . UnMergeAll))
-        , ("M-C-.", onGroup W.focusUp')    -- Switch focus to next tab
-        , ("M-C-,", onGroup W.focusDown')  -- Switch focus to prev tab
+        , ("M-C-.", onGroup W.focusDown')    -- Switch focus to next tab
+        , ("M-C-,", onGroup W.focusUp')  -- Switch focus to prev tab
 
     -- Scratchpads
         , ("M-C-<Return>", namedScratchpadAction myScratchPads "terminal")
-        , ("M-C-c", namedScratchpadAction myScratchPads "mocp")
+        , ("M-C-b", namedScratchpadAction myScratchPads "firefox")
 
     -- Multimedia Keys
         , ("<XF86AudioPlay>", spawn ("playerctl play-pause"))
@@ -550,7 +552,7 @@ main = do
         , focusedBorderColor = myFocusColor
         , focusFollowsMouse  = myFocusFollowsMouse
         , clickJustFocuses   = myClickJustFocuses
-        , logHook = workspaceHistoryHook <+> myLogHook <+> dynamicLogWithPP xmobarPP
+        , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
                         { ppOutput = \x -> hPutStrLn xmproc0 x
                         , ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]"           -- Current workspace in xmobar
                         , ppVisible = xmobarColor "#98be65" "" . clickable              -- Visible but not current workspace

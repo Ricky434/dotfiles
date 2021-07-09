@@ -1,45 +1,44 @@
-#Material theme
+#One Dark
 [options]
-# era Inconsolata 12
-font = MesloLGS NF 10
+font = JetBrains Mono 11.5
 
 
 [colors]
 
 # special
-foreground      = #eceff1
-foreground_bold = #eceff1
-cursor          = #eceff1
-background      = #263238
+foreground      = #c8ccd4
+foreground_bold = #c8ccd4
+cursor          = #c8ccd4
+background      = #282c34
 
 # black
-color0  = #263238
-color8  = #37474f
+color0  = #1e222a
+color8  = #545862
 
 # red
-color1  = #ff9800
-color9  = #ffa74d
+color1  = #e06c75
+color9  = #e06c75
 
 # green
-color2  = #8bc34a
-color10 = #9ccc65
+color2  = #98c379
+color10 = #98c379
 
 # yellow
-color3  = #ffc107
-color11 = #ffa000
+color3  = #e5c07b
+color11 = #e5c07b
 
 # blue
-color4  = #03a9f4
-color12 = #81d4fa
+color4  = #61afef
+color12 = #61afef
 
 # magenta
-color5  = #e91e63
-color13 = #ad1457
+color5  = #c678dd
+color13 = #c678dd
 
 # cyan
-color6  = #009688
-color14 = #26a69a
+color6  = #56b6c2
+color14 = #56b6c2
 
 # white
-color7  = #cfd8dc
-color15 = #eceff1
+color7  = #abb2bf
+color15 = #c8ccd4

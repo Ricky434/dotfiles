@@ -19,9 +19,9 @@ scan_timeout = 10
 # Disable the newline at the start of the prompt
 add_newline = false
 
-[character]                            # The name of the module we are configuring is "character"
-success_symbol = "[❯](bold red)"
-error_symbol = "[❯](bold purple)"
+[character]
+success_symbol = "[❯ ](bold red)"
+error_symbol = "[❯ ](bold purple)"
 format = "$symbol"
 
 [cmd_duration]
@@ -40,11 +40,16 @@ read_only = " "
 [git_branch]
 symbol = " "
 truncation_symbol = ""
-format = "<[$branch]($style)> "
+format = "<[$symbol](bold green)[$branch]($style)> "
 style = "bold blue"
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]](bold purple) )'
+staged = '[+](bold green)'
+modified = '[!](bold blue)'
+untracked = '[?](bold yellow)'
+deleted = '[✘](bold red)'
+
 
 [hostname]
 ssh_only = false
@@ -52,13 +57,15 @@ format =  "[$hostname](bold blue)"
 trim_at = ""
 
 [jobs]
-symbol = "✦"
+symbol = "*"
 format = "[$symbol$number]($style)"
 
 [status]
 style = "bold red"
 sigint_symbol = "ﳼ"
 not_executable_symbol = ""
+not_found_symbol = ""
+signal_symbol = ""
 format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
 map_symbol = true
 disabled = false

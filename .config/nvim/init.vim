@@ -1,10 +1,12 @@
 syntax on
 set autoindent
-
-" Ignore case unless use a capital in search (smartcase needs ignore set)
+"set mouse=a
+set number
 set ignorecase
-set smartcase
+set smartcase " smartcase needs ignore set)
 
+" Remappa a Esc il tasto per uscire da Terminal mode (invece di Ctrl+\+Ctrl+n)
+tnoremap <Esc> <C-\><C-n>
 
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
@@ -19,6 +21,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
+Plug ' joshdick /onedark.vim'
 
 " Initialize plugin system
 call plug#end()
