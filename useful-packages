@@ -1,0 +1,90 @@
+- Firmware
+aic94xx-firmware (AUR)
+upd72020x-fw (AUR)
+wd719x-firmware (AUR)
+
+- Fonts
+nerd-fonts-source-code-pro (AUR)
+nerd-fonts-ubuntu-mono
+noto-fonts
+noto-fonts-cjk
+noto-fonts-extra
+ttf-jetbrains-mono
+ttf-ubuntu-font-family
+
+- Fonts potenzialmente inutili
+nerd-fonts-mononoki (AUR)
+nerd-fonts-roboto-mono (AUR)
+ttf-dejavu
+ttf-fira-mono
+ttf-font-awesome
+ttf-inconsolata
+ttf-liberation
+
+- Window managers
+awesome-git
+bspwm
+xmonad (+xmobar, xmonad-contrib)
+
+- Wm-utils
+nitrogen
+picom
+redshift
+rofi
+lightdm, lightdm-gtk-greeter (if you don't want sddm)
+papirus-icon-theme
+lxappearance (set gtk theme, download breeze-gtk + breeze cursors)
+dunst (notifications, awesome doesn't need it)
+polybar (potrebbe essere utile/necessario per qualche wm) (AUR)
+qualche polkit
+sxhkd (necessario per bspwm)
+
+- Audio
+alsa-utils
+pasystray
+pavucontrol
+pipewire (pulseaudio, alsa)
+playerctl (potrebbe essere utile per fare Next, Prev, Pause, ecc)
+
+- Network
+gufw
+network-manager-applet
+networkmanager
+wireless_tools
+wpa_supplicant
+
+- Terminal
+kitty
+exa
+starship
+zsh
+zsh-completions
+zsh-syntax-highlighting
+
+- Molto utili
+paru (AUR)
+pacman-contrib
+git
+man-db
+man-pages
+
+- Utili
+htop
+neofetch
+ffmpeg
+cbatticon (batteria laptop)
+viewnior (photo viewer)
+mpv (video player)
+imwheel (potrebbe non servire)
+calc
+wget
+curl
+
+- Cose stupide
+cbonsai (AUR)
+cmatrix
+cowsay
+asciiquarium
+pipes.sh
+hollywood (AUR)
+fortune-mod
