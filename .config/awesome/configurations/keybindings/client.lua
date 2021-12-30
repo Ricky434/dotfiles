@@ -26,7 +26,15 @@ local clientkeys = gears.table.join(
     awful.key(
 		{ modkey, "Shift" },
 		"space",
-		awful.client.floating.toggle                     ,
+		function (c)
+        awful.client.floating.toggle()
+        --- quando metti le finestre floating, mettigli la title bar
+        if c.floating then
+            awful.titlebar.show(c)
+        else
+            awful.titlebar.hide(c)
+        end
+    end,
         {description = "toggle floating", group = "client"}
 	),
 	-- Swap with master

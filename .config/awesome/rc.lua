@@ -9,7 +9,6 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
 -- require("awful.hotkeys_popup.keys")
-require('awful.autofocus')
 local has_fdo, freedesktop = pcall(require, "freedesktop")
 
 -- Error handling

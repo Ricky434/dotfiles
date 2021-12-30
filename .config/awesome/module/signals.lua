@@ -172,7 +172,3 @@ tag.connect_signal("property::layout", function(t)
     end
 end)
 
---Toggle titlebar on floating status change
---client.connect_signal("property::floating", function(c)
-    --setTitlebar(c, c.floating)
---end)

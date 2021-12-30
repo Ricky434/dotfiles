@@ -49,29 +49,28 @@ awful.rules.rules = {
 			  "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
 			}
       	},
-		properties = { floating = true }
+		properties = { floating = true, titlebars_enabled = true } -- la parte titlebars NON FUNZIONA non capisco perche
 	},
 
     -- Add titlebars to normal clients and dialogs
     {
 		rule_any = {
-			type = { "normal", "dialog", "floating" },
+			type = { "normal", "dialog" },
       	},
 		properties = { titlebars_enabled = true }
     },
-
-    -- Set Firefox to always map on the tag named "1" on screen 1.
+		-- Firefox ricorda da solo se l'ultima volta era maximized, ma se parte direttamente maximized si bugga e lascia un bordino in alto, quindi lo faccio partire sempre non maximized
     {
-		rule = { class = "firefox" },
-    	properties = { screen = 1, tag = "WEB" }
+		rule = { class = "Firefox" },
+    	properties = { maximized = false }
 	},
 	{
 		rule = { instance = "plugin-container" },
-	 	roperties = { floating = true }
+	 	properties = { floating = true }
   	},
 	{
 		rule = { role = "_NET_WM_STATE_FULLSCREEN" },
-  		roperties = { floating = true }
+  		properties = { floating = true }
   	},
 	{
 		rule = { class= "Simple-scan" },
