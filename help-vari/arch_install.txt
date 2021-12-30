@@ -1,0 +1,56 @@
+## PARTITION
+partition (cfdisk) (root, boot)
+mkfs
+
+## PACSTRAP
+edit pacman mirrorlist, pacman -Syy
+pacstrap /mnt base linux linux-firmware neovim
+
+## GENFSTAB
+genfstab -U /mnt >> /mnt/etc/fstab, edit fstab
+arch-chroot /mnt
+
+## TIME
+ln -sf /usr/share/zoneinfo/Europe/Rome /etc/localtime
+hwclock --systohc
+timedatectl set-local-rtc 1 (per non far diventare stupido l'orologio di windows)
+
+## LOCALE
+edit /etc/locale.gen, locale-gen
+LANG=en_US.UTF-8 in /etc/locale.conf
+
+## HOSTNAME
+myhostname in /etc/hostname
+edit /etc/hosts con:
+127.0.0.1	localhost
+::1		localhost
+127.0.1.1	myhostname.localdomain	myhostname
+
+## ROOT PASSWORD
+passwd
+
+## INSTALL ROBA UTILE (compreso grub)
+pacman -S grub efibootmgr networkmanager network-manager-applet dialog wireless_tools wpa_supplicant os-prober mtools dosfstools base-devel linux-headers ntfs-3g man-db man-pages
+
+## GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+mount partizioni con altri OS
+grub-mkconfig -o /boot/grub/grub.cfg
+exit, umount -a, reboot
+
+## ENABLE NETWORK
+systemctl start NetworkManager
+systemctl enable NetworkManager
+(per wifi fai nmtui e seleziona connessione)
+
+## ADD USER
+useradd -m -G wheel jelly
+passwd jelly
+EDITOR=nvim visudo -> abililta wheel
+
+## INSTALL VIDEO DRIVERS, DE, SDDM
+pacman -S nvidia nvidia-utils xorg sddm
+systemctl enable sddm
+pacman -S plasma xdg-user-dirs packagekit-qt5
+
+fatto

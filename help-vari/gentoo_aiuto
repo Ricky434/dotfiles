@@ -1,0 +1,35 @@
+Il world set e' composto dal system set e il selected set
+Il system set contiene tutti i packages utili al funzinamento dell'OS
+Il selected set contiene tutti i packages installati esplicitamente
+
+Comandi utili:
+- sudo emerge -av package                  ---installa il package
+- sudo emerge -avuDU @world    		         ---aggiorna tutto il sistema (ask,verbose,update,deep,changed-use)
+- sudo emerge -av --deselect package    	 ---toglie il package dal world set (emerge -aW)
+- sudo emerge -a --depclean	  						 ---disinstalla tutti i package che non sono nel world set e da cui non dipende nessun package nel world set (emerge -ac)
+- smart-live-rebuild											 ---aggiorna i package live
+- eix, equery															 ---mostrano informazioni sui package installati (guarda wiki)
+
+
+
+I packages con le keywords ~amd64 vogliono dire che sono instabili, e per scaricarli serve aggiongere il nome del package e della keyword in /etc/portage/package.accept_keywords
+
+Alcuni packages non hanno proprio keywords, perche non sono stati testati su una certa architettura, per installarli aggiungi il nome del package e ** in /etc/portage/package.accept_keywords
+
+Usa smart-live-rebuild per updatare automaticamente i packages live (quelli con versione 9999, che vengono presi direttamente da git)
+
+Per aggiungere degli use flags solo per packages specifici crea un file in /etc/portage/package.use/ con un nome che faccia capire a che package si riferisce, e mettici dentro il nome del package seguito dagli use flags
+
+Alcuni packages hanno bisogno di alcuni use flags per essere installati. Portage lo fa presente quando cerchi di installarli e ti chiede se li vuoi aggiungere automaticamente. Se accetti crea un file temporaneo che corrisponde a /etc/portage/package.use/zz-autounmask aggiornato, in cui viene aggiunto l'use flag necessario per il package che si sta installando. Per confermare e sostituire il file con il nuovo usa dispatch-conf
+
+Allo stesso modo alcuni packages richiedono di accettare delle license, per farlo vai in /etc/portage/package.license e aggiungi il nome del package seguito dal nome della licensa da accettare (o dal tipo di license da accettare, es: @BINARY-REDISTRIBUTABLE, piu informazioni sulla wiki)
+
+
+
+Per i temi gtk:
+	1) copiare i temi, le icone e i cursori desiderati nei vari /usr/local/share/icons,themes (i cursori vanno in icons, guarda archwiki)
+	2) creare un file .config/gtk-3.0/settings.ini in cui si specificano il tema, le icone, il font, il cursore
+	3) fare lo stesso nel file .gtkrc-2.0
+
+Per qt5:
+	boh al momento non uso applicazioni qt5, quindi non mi sono posto il problema, e non so neanche se esiste

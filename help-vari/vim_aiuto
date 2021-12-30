@@ -1,0 +1,37 @@
+Esci senza salvare: ZQ (uguale a :q!)
+Esci e salva: ZZ, :x
+Esci e salva su tutte le tabs: :wqa
+Metti linea del cursore al centro: zz
+Metti linea del cursore al top: zt
+--
+xset x rate 300 50 (per rendere tasti piu veloci)
+--
+{ e } per muoverti tra paragrafi
+Insert: A, a, I, i
+Delete: dw, de, db, d$ (uguale a D) , dd (4dd elimina 4 righe), d^, daw (elimina tutta la word a prescindere da dove sei, e gli spazi intorno, diw non li elimina), di( (elimina tutto dentro alle parentesi, daw elimina anche le parentesi), funziona anche con "
+Vai a inizio riga: ^, 0
+Muoviti tra parole: w, e, b
+Puoi usare i numeri per muoverti: 2w (2 parole avanti) -> d2w (cancella 2 parole)
+Undo: u, U (intera riga)
+Redo: Ctrl+r
+Ordina righe selezionate in ordine alfabetico: :sort
+Torna indietro a 5 minuti fa: :earlier 5m (later ti fa andare avanti)
+Incolla: p (se stai incollando una linea intera la mette nella linea sotto al cursore, altrimenti mette il testo dopo il cursore), P (mette il testo prima del cursore)
+Usa clipboard di sistema: nelle impostazioni set clipboard+=qualcosa (leggi documentazione)
+Replace: r (singolo carattere, funziona anche in visual mode), R (da qui in poi)
+Change: cw (rimpiazza parola), ci( (rimpiazza tutto all'interno delle parentesi), c$ (uguale a C)
+Muoviti nel file: 25% (vai a 25% del file), G (vai alla fine), gg (vai all'inizio)
+Cerca: / (dopo aver premuto Enter, n per andare avanti, N per andare indietro), ? (cerca al contrario: dal basso verso l'alto)
+Crea nuova linea e mettimi in insert mode: o (O la crea sopra la linea corrente invece che sotto)
+Vai alla parentesi corrispondente alla corrente: %
+Sostituisci: :s/thee/the/ (sostituisce la prossima istanza di thee con the), s/thee/the/g (sostituisce tutte le istanze), s/thee/the/gc (ti chiede a ogni istanza se vuoi sostituire)
+Torna alla posizione precedente: ''
+Esegui comando shell: :!comando (es: :!ls)
+Visual mode: v, vap (seleziona tutto il paragrafo), V (seleziona linea per linea), Ctrl+V (seleziona blocco)
+Copia: y (copia roba selezionata in visual), yap (copia paragrafo), yy copia tutta la linea
+Esegui ultimo comando: . (funziona anche con change) (prova a usarlo per aggiungere roba alla fine di tante linee con A)
+Esegui un comando in normal mode sul testo selezionato: :norm comando (comparira' :'<,'>norm comando)
+Esiste uno spell checker con un sacco di roba, cerca su internet se ti interessa
+Indenta: >>
+Deindenta: <<
+https://vim.rtorr.com/ (vim cheat sheet)

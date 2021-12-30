@@ -1,0 +1,28 @@
+Estensioni:
+	Better TOML
+	C/C++
+	Cargo
+	CMake
+	CMake Tools
+	CodeLLDB
+	Color Info
+	Debugger for Java
+	Haskell
+	Haskell Syntax Highlighing
+	HTML CSS Support
+	Language Support for Java
+	LaTeX Workshop
+	Lua
+	Markdown PDF
+	Modelica
+	One Monokai Theme (number constant.numeric #e48852 nel json del tema)
+	Pylance
+	Python
+	rust-analyzer
+	Visual Studio Intellicode
+
+Impostazioni:
+	Font Size: 15
+	Font Family: 'JetBrains Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'
+	Word Wrap: on
+	Word Wrap Column: 90

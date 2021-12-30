@@ -1,0 +1,15 @@
+List all explicitly installed packages: pacman -Qe
+
+List all packages in the package group named group: pacman -Sg [group]
+
+List all foreign packages (typically manually downloaded and installed or packages removed from the repositories): pacman -Qm
+
+List all native packages (installed from the sync database(s)): pacman -Qn
+
+List packages by regex: pacman -Qs [regex]
+
+Remove orphans: pacman -Qtdq | pacman -Rns -
+
+List all explicitly installed packages in file: pacman -Qqe > pkglist.txt
+
+List the information that the packages site shows, including "Required by": pacman -Qi <package name>
