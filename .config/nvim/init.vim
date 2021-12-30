@@ -2,8 +2,10 @@ syntax on
 set autoindent
 "set mouse=a
 set number
+set relativenumber
 set ignorecase
 set smartcase " smartcase needs ignore set)
+set termguicolors
 
 " Remappa a Esc il tasto per uscire da Terminal mode (invece di Ctrl+\+Ctrl+n)
 tnoremap <Esc> <C-\><C-n>
@@ -21,7 +23,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'sainnhe/gruvbox-material'
 Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
-Plug ' joshdick /onedark.vim'
+Plug 'joshdick/onedark.vim'
+Plug 'norcalli/nvim-colorizer.lua'
 
 " Initialize plugin system
 call plug#end()
@@ -53,3 +56,7 @@ let g:gruvbox_contrast_dark = 'medium'
 
 ""colorscheme gruvbox
 ""let g:airline_theme = 'gruvbox'
+
+
+" ---- COLORIZER
+lua require'colorizer'.setup()
