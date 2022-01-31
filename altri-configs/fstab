@@ -1,0 +1,22 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/sda2 - Root
+UUID=90561f19-d06b-4443-90df-36264d4b189c	/             ext4      rw,relatime	0 1
+
+# /dev/sda1 - Boot
+UUID=22C9-41B8      				/boot/efi     vfat      rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+
+# /swapfile
+/swapfile					none	      swap	defaults 0 0
+
+# /dev/sdb2 (C:)
+UUID=9E0E0AB80E0A898B                           /mnt/chicken  ntfs      defaults,noatime 0 2
+
+# /dev/sdb3 (Vulture)
+UUID=e0f3edd8-0dc2-4a88-9ae6-37434824ced1       /mnt/vulture  ext4      defaults,noatime 0 2
+
+
+# /dev/sdc2 (D:)
+UUID=B47AAC9C7AAC5D3C                           /mnt/duck     ntfs      defaults,noatime 0 2
