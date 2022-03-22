@@ -13,6 +13,6 @@ default_image="/boot/initramfs-linux.img"
 fallback_image="/boot/initramfs-linux-fallback.img"
 fallback_options="-S autodetect"
 
-provavm_config="/etc/mkinitcpio-provavm.conf"
+provavm_config="/etc/mkinitcpio-custom.conf"
 provavm_image="/boot/initramfs-provavm.img"
 #provavm_options=""

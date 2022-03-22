@@ -1,14 +1,9 @@
-Ho aggiunto il kernel parameter in /etc/default/grub per dire a vfio quale scheda video prendere
+Ho aggiunto il kernel parameter in /etc/modprobe.d/vfio.conf per dire a vfio quale scheda video prendere
 
-Ho fatto un nuovo mikinitcpio.conf chiamato mkinitcpio-provavm.conf, con il quale genero l'image initramfs-provavm.conf
+Ho fatto un nuovo mikinitcpio.conf chiamato mkinitcpio-custom.conf, con il quale genero l'image initramfs-provavm.conf
 Si rigenera automaticamente da solo perche ho aggiunto il profilo provavm in /etc/mkinitcpio.d/linux.preset
 
-Ho aggiunto un coso per generare la entry in grub per l'image initramfs-provavm.img in /etc/grub.d/10_linux (inizia al commento ##### MIA ENTRY)
-
-
-Ho compilato un kernel patchato perche amd e' stupida e crea problemi (Error: internal error: Unknown PCI header type ‘127'), adesso devo fare in modo che si aggiorni automaticamente https://wiki.archlinux.org/title/Kernel/Arch_Build_System
-
-PROBABILMENTE NON SERVIVA FARE IL KERNEL NUOVO devo eliminarlo (insisme ai initramfs aggiuntivi creati) e semplicemente rifare da 0 la vm
+Ho aggiunto un coso per generare la entry in grub per l'image initramfs-provavm.img in /etc/grub.d/10_linux (inizia al commento ##### MIA ENTRY) 
 
 Ho patchato il vbios della mia gpu e ho detto a kvm di usarlo
 
@@ -18,12 +13,13 @@ Attaccare la parte audio della gpu alla vm e' la causa dell'errore 127, posso se
 
 Non so se serve disattivare la rom bar per la gpu, nel dubbio l'ho fatto
 
-PER TUTTO QUESTO TEMPO MI DAVA BLACK SCREEN SOLO PERCHE SERVE UN SECONDO MONITOR A CUI ATTACCARE LA SCHEDA PASSTHOUGHATA
+PER TUTTO QUESTO TEMPO MI DAVA BLACK SCREEN SOLO PERCHE SERVE UN SECONDO MONITOR A CUI ATTACCARE LA SCHEDA PASSTHROUGHATA
 
 Uso Looking glass per non avere bisogno del secondo monitor (o secondo cavo hdmi) (archwiki)
 Creo uno shared memory file al boot con la configurazione in /etc/tmpfiles.d/10-looking-glass.conf
 Per far funzionare looking glass servono il virtio driver, gli spice guest tools e il looking-glass-host per windows
 Prima di installare il looking-glass-host (DEVE ESSERE DELLA STESSA VERSIONE DI LOOKING GLASS PER LINUX) bisogna aggiornare il device PCI standard RAM Controller (in System Devices) tramite i drivers forniti sul sito di looking glass (da redhat)
 Per far comparire quel device bisogna aggiungere il device looking-glass nel xml della vm
+(Scherzo, non sono riuscito a farlo funzionare, comunque i vari driver servono lo stesso a windows)
 
 Per usare un singolo mouse e tastiera glieli passo come input evdev (archwiki) (IL TOGGLE E' left-CTRL+right-CTRL)
