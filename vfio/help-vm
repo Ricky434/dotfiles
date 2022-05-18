@@ -20,6 +20,8 @@ Creo uno shared memory file al boot con la configurazione in /etc/tmpfiles.d/10-
 Per far funzionare looking glass servono il virtio driver, gli spice guest tools e il looking-glass-host per windows
 Prima di installare il looking-glass-host (DEVE ESSERE DELLA STESSA VERSIONE DI LOOKING GLASS PER LINUX) bisogna aggiornare il device PCI standard RAM Controller (in System Devices) tramite i drivers forniti sul sito di looking glass (da redhat)
 Per far comparire quel device bisogna aggiungere il device looking-glass nel xml della vm
-(Scherzo, non sono riuscito a farlo funzionare, comunque i vari driver servono lo stesso a windows)
+Per far funzionare looking glass bisogna attaccare un cavo hdmi alla scheda passthroughata
 
 Per usare un singolo mouse e tastiera glieli passo come input evdev (archwiki) (IL TOGGLE E' left-CTRL+right-CTRL)
+
+Per il poco che ho provato, Hyper-V crea solo enormi problemi, forse cambiando qualche parte dell'xml della vm lo si rende utile
