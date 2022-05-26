@@ -15,7 +15,24 @@ or other application using the libvirt API.
   </metadata>
   <memory unit='KiB'>8388608</memory>
   <currentMemory unit='KiB'>8388608</currentMemory>
-  <vcpu placement='static'>16</vcpu>
+  <vcpu placement='static'>14</vcpu>
+  <cputune>
+    <vcpupin vcpu='0' cpuset='1'/>
+    <vcpupin vcpu='1' cpuset='9'/>
+    <vcpupin vcpu='2' cpuset='2'/>
+    <vcpupin vcpu='3' cpuset='10'/>
+    <vcpupin vcpu='4' cpuset='3'/>
+    <vcpupin vcpu='5' cpuset='11'/>
+    <vcpupin vcpu='6' cpuset='4'/>
+    <vcpupin vcpu='7' cpuset='12'/>
+    <vcpupin vcpu='8' cpuset='5'/>
+    <vcpupin vcpu='9' cpuset='13'/>
+    <vcpupin vcpu='10' cpuset='6'/>
+    <vcpupin vcpu='11' cpuset='14'/>
+    <vcpupin vcpu='12' cpuset='7'/>
+    <vcpupin vcpu='13' cpuset='15'/>
+    <emulatorpin cpuset='0,8'/>
+  </cputune>
   <os>
     <type arch='x86_64' machine='pc-q35-6.2'>hvm</type>
     <loader readonly='yes' type='pflash'>/usr/share/edk2-ovmf/x64/OVMF_CODE.secboot.fd</loader>
@@ -37,7 +54,8 @@ or other application using the libvirt API.
     <ioapic driver='kvm'/>
   </features>
   <cpu mode='host-passthrough' check='none' migratable='on'>
-    <topology sockets='1' dies='1' cores='8' threads='2'/>
+    <topology sockets='1' dies='1' cores='7' threads='2'/>
+    <feature policy='require' name='topoext'/>
   </cpu>
   <clock offset='localtime'>
     <timer name='rtc' tickpolicy='catchup'/>
@@ -60,14 +78,6 @@ or other application using the libvirt API.
       <target dev='sda' bus='sata'/>
       <boot order='1'/>
       <address type='drive' controller='0' bus='0' target='0' unit='0'/>
-    </disk>
-    <disk type='file' device='cdrom'>
-      <driver name='qemu' type='raw'/>
-      <source file='/mnt/duck/Linux_Stuff/Iso/Win11_English_x64.iso'/>
-      <target dev='sdb' bus='sata'/>
-      <readonly/>
-      <boot order='2'/>
-      <address type='drive' controller='0' bus='0' target='0' unit='1'/>
     </disk>
     <controller type='pci' index='0' model='pcie-root'/>
     <controller type='pci' index='1' model='pcie-root-port'>
@@ -170,18 +180,13 @@ or other application using the libvirt API.
     <controller type='virtio-serial' index='0'>
       <address type='pci' domain='0x0000' bus='0x02' slot='0x00' function='0x0'/>
     </controller>
-    <interface type='network'>
-      <mac address='52:54:00:ed:a2:69'/>
-      <source network='default'/>
+    <interface type='bridge'>
+      <mac address='52:54:00:6d:6e:2e'/>
+      <source bridge='virbr0'/>
       <model type='virtio'/>
+      <driver queues='8'/>
       <address type='pci' domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
     </interface>
-    <input type='mouse' bus='virtio'>
-      <address type='pci' domain='0x0000' bus='0x05' slot='0x00' function='0x0'/>
-    </input>
-    <input type='keyboard' bus='virtio'>
-      <address type='pci' domain='0x0000' bus='0x07' slot='0x00' function='0x0'/>
-    </input>
     <input type='mouse' bus='ps2'/>
     <input type='keyboard' bus='ps2'/>
     <input type='evdev'>
@@ -193,10 +198,20 @@ or other application using the libvirt API.
     <tpm model='tpm-crb'>
       <backend type='emulator' version='2.0'/>
     </tpm>
+    <graphics type='spice' autoport='yes'>
+      <listen type='address'/>
+      <image compression='off'/>
+      <gl enable='no'/>
+    </graphics>
     <sound model='ich9'>
+      <codec type='micro'/>
+      <audio id='1'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x1b' function='0x0'/>
     </sound>
-    <audio id='1' type='spice'/>
+    <audio id='1' type='pulseaudio' serverName='/run/user/1000/pulse/native'/>
+    <video>
+      <model type='none'/>
+    </video>
     <hostdev mode='subsystem' type='pci' managed='yes'>
       <source>
         <address domain='0x0000' bus='0x29' slot='0x00' function='0x0'/>
@@ -204,15 +219,13 @@ or other application using the libvirt API.
       <rom bar='off' file='/home/jelly/AltreCose/vfio/3050mia-patched.rom'/>
       <address type='pci' domain='0x0000' bus='0x06' slot='0x00' function='0x0'/>
     </hostdev>
-    <hostdev mode='subsystem' type='usb' managed='yes'>
-      <source>
-        <vendor id='0x0951'/>
-        <product id='0x16a4'/>
-      </source>
-      <address type='usb' bus='0' port='3'/>
-    </hostdev>
     <memballoon model='virtio'>
       <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
     </memballoon>
+    <shmem name='looking-glass'>
+      <model type='ivshmem-plain'/>
+      <size unit='M'>32</size>
+      <address type='pci' domain='0x0000' bus='0x10' slot='0x01' function='0x0'/>
+    </shmem>
   </devices>
 </domain>
