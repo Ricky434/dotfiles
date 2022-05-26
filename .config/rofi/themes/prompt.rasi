@@ -1,0 +1,16 @@
+configuration {
+	modi: "drun,run";
+	display-drun : " DRun";
+	display-run : " Run";
+	display-filebrowser: " FileBrowser";
+	matching: "prefix";
+    	drun-match-fields: "name,generic";
+	sidebar-mode: true;
+	show-icons: true;
+	disable-history: false;
+}
+
+@theme "/dev/null"
+@import "styles/spotlight.rasi"
+
+/* vim:ft=css
