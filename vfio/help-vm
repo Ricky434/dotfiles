@@ -25,3 +25,29 @@ Per far funzionare looking glass bisogna attaccare un cavo hdmi alla scheda pass
 Per usare un singolo mouse e tastiera glieli passo come input evdev (archwiki) (IL TOGGLE E' left-CTRL+right-CTRL)
 
 Per il poco che ho provato, Hyper-V crea solo enormi problemi, forse cambiando qualche parte dell'xml della vm lo si rende utile
+
+
+Per shared folder: samba share: starta smb.service, collegati da windows a \\indirizzo-ip\nome-cartella (nome-cartella= [shared] in smb.conf), ricordati di aggiungere regola al firewall dell'host
+
+
+Per il boot noPassthrough: se tutte e due le gpu sono collegate al monitor, l'ambiente grafico non parte, anche se i moduli nvidia sono caricati correttamente.
+Se solo una delle due gpu e' collegata tutto funziona come dovrebbe.
+Comunque se ho bootato con il passthrough e non sto usando la gpu, posso unbindarla da vfio-pci e bindarla a nvidia (per vedere la differenza in nvidia-settings devo riavviare l'ambiente grafico, ma se riavvio l'ambiente grafico, i comandi per unbindare/bindare non funzionano piu, e' come se andassero in loop)
+E dopo aver fatto quello che volevo fare posso unbindarla da nvidia e ribindarla a vfio-pci
+(per la parte audio della gpu invece di nvidia bisogna bindare/unbindare a snd_hda_intel)
+
+Script per bindare a nvidia:
+
+#!/bin/sh
+#ID della gpu (video e audio)
+ID1="0000:29:00.0"
+ID2="0000:29:00.1"
+echo "Unbind GPU from vfio driver"
+sudo sh -c "echo -n $ID1 > /sys/bus/pci/drivers/vfio-pci/unbind" || echo "Failed to unbind $ID1"
+sudo sh -c "echo -n $ID2 > /sys/bus/pci/drivers/vfio-pci/unbind" || echo "Failed to unbind $ID2"
+echo "Bind GPU to nvidia driver"
+sudo sh -c "echo -n $ID1 > /sys/bus/pci/drivers/nvidia/bind" || echo "Failed to bind $ID1"
+echo "Bind GPU audio to snd_hda_intel driver"
+sudo sh -c "echo -n $ID2 > /sys/bus/pci/drivers/snd_hda_intel/bind" || echo "Failed to bind $ID2"
+
+Inverti bind/unbind per bindare a vfio
