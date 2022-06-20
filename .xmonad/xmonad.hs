@@ -109,6 +109,7 @@ myStartupHook :: X ()
 myStartupHook = do
           spawn "killall trayer"
 
+          spawnOnce "killall dunst; dunst"
           spawnOnce "nitrogen --restore &"
           spawnOnce "picom"
           spawnOnce "xinput --set-prop \"Logitech G203 Prodigy Gaming Mouse\" 'libinput Accel Profile Enabled' 0, 1 &"
@@ -116,7 +117,7 @@ myStartupHook = do
           spawnOnce "killall redshift; redshift-gtk -t 6500:4550 &"
           spawnOnce "/usr/lib/polkit-kde-authentication-agent-1 &"
           -- spawnOnce "polybar -q bottom -c $HOME/.config/polybar/current/config.ini &"
-          spawn ("sleep 2 && trayer --edge bottom --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --iconspacing 6 " ++ colorTrayer ++ " --height 22")
+          spawn ("sleep 2 && trayer --edge bottom --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --iconspacing 3 " ++ colorTrayer ++ " --height 22")
           spawnOnce "nm-applet --indicator &"
           spawnOnce "pasystray"
           setWMName "XMONAD"
@@ -126,7 +127,7 @@ myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
                 , NS "calculator" spawnCalc findCalc manageCalc
                 ]
   where
-    spawnTerm  = myTerminal ++ " -t scratchpad"
+    spawnTerm  = myTerminal ++ " --title scratchpad"
     findTerm   = title =? "scratchpad"
     manageTerm = customFloating $ W.RationalRect l t w h
                where
@@ -241,6 +242,7 @@ myManageHook = composeAll
      , className =? "toolbar"         --> doFloat
      -- , className =? "Yad"             --> doCenterFloat
      , title =? "Oracle VM VirtualBox Manager"  --> doFloat
+     , title =? "calcurse" --> doFloat
      -- , title =? "Mozilla Firefox"     --> doShift ( myWorkspaces !! 1 )
      -- , className =? "mpv"             --> doShift ( myWorkspaces !! 7 )
      -- , className =? "VirtualBox Manager" --> doShift  ( myWorkspaces !! 4 )

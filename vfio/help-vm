@@ -35,6 +35,7 @@ Se solo una delle due gpu e' collegata tutto funziona come dovrebbe.
 Comunque se ho bootato con il passthrough e non sto usando la gpu, posso unbindarla da vfio-pci e bindarla a nvidia (per vedere la differenza in nvidia-settings devo riavviare l'ambiente grafico, ma se riavvio l'ambiente grafico, i comandi per unbindare/bindare non funzionano piu, e' come se andassero in loop)
 E dopo aver fatto quello che volevo fare posso unbindarla da nvidia e ribindarla a vfio-pci
 (per la parte audio della gpu invece di nvidia bisogna bindare/unbindare a snd_hda_intel)
+Comandi utili: "lspci -nnk -d 10de:", "sudo dmesg"
 
 Script per bindare a nvidia:
 
