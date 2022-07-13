@@ -85,8 +85,15 @@ preexec() {
 
 # ======= ART
 #
-#bat /mnt/duck/Linux_Stuff/fare.txt
 #fortune -s | cowsay
 source ~/.config/zsh_stuff/ascii_art
-echo "rg e' meglio di grep (non per gli script)"
+
+# ======= TODO
+#
 source ~/.config/zsh_stuff/todo
+#bat /mnt/duck/Linux_Stuff/fare.txt
+
+# ======= KEYCHAIN
+#
+# Automatically add ssh keys to ssh-agent (asks for passwords)
+eval $(keychain --eval id_ed25519 gitlabSapienzaApps --timeout 120)

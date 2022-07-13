@@ -7,8 +7,9 @@ BBLUE='\e[1;34m'
 DOT=" ${BBLUE}*${NC}"
 
 # List
-echo "\n${BMAG}TODO${NC}:
+echo "\n ${BMAG}TODO${NC}:
 ${DOT} Xmonad workspace tags, click logout
 ${DOT} doom emacs
 ${DOT} migliora cpu vm
+${DOT} rg > grep
 "
