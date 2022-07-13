@@ -7,16 +7,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export PATH="$HOME/.local/bin:$PATH"
 
-# aggiunge gli eseguibili delle gems di ruby al path
-export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-export PATH="$PATH:$GEM_HOME/bin"
-
-# aggiunge gli eseguibili di rbenv al path per poter usare varie versioni di ruby
-export PATH="$PATH:$HOME/.rbenv/bin"
-eval "$(rbenv init -)"
-
-
-# Set xdg compliant locations for various programs
+# Set XDG compliant locations for various programs
 export CALCHISTFILE="$XDG_CACHE_HOME"/calc_history
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
@@ -35,3 +26,12 @@ export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME"/bundle
 export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export SOLARGRAPH_CACHE="$XDG_CACHE_HOME"/solargraph
 export STACK_ROOT="$XDG_DATA_HOME"/stack
+
+
+# aggiunge gli eseguibili delle gems di ruby al path
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
+
+# aggiunge gli eseguibili di rbenv al path per poter usare varie versioni di ruby
+export PATH="$PATH:$RBENV_ROOT/bin"
+eval "$(rbenv init -)"
