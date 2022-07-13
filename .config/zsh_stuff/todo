@@ -1,0 +1,14 @@
+# Colors
+NC='\e[0m'
+BMAG='\e[1;35m'
+BBLUE='\e[1;34m'
+
+# Dot
+DOT=" ${BBLUE}*${NC}"
+
+# List
+echo "\n${BMAG}TODO${NC}:
+${DOT} Xmonad workspace tags, click logout
+${DOT} doom emacs
+${DOT} migliora cpu vm
+"

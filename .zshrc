@@ -38,19 +38,15 @@ alias la='exa -lahg'
 #alias find='fd'
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
 alias cal='cal -m'
+alias http='noglob http' # avoids zsh globbing, so you can use [ and ] without needing to escape them
+alias emacs='emacsclient --alternate-editor= --create-frame'
 
-# ======= ZSH OPTIONS
+# ======= OTHER ZSH OPTIONS
 #
 setopt autopushd #serve per popd (tipo cd - ma meglio)
 setopt completeinword
-setopt extendedhistory
-setopt histexpiredupsfirst
-setopt histignoredups
-setopt histverify #serve per poter modificare i comandi chiamati con !! (comando precedente) e simili prima di eseguirli
 setopt interactivecomments #serve per poter mettere i commenti nei comandi
 setopt longlistjobs
-setopt pushdignoredups
-setopt sharehistory
 
 # ======= SYNTAX HIGHLIGHTING
 #
@@ -92,8 +88,5 @@ preexec() {
 #bat /mnt/duck/Linux_Stuff/fare.txt
 #fortune -s | cowsay
 source ~/.config/zsh_stuff/ascii_art
-
-echo "aconfmgr, awesome no gaps quando solo una window?"
-echo "risolvi boot noPassthrough: la 3050 viene bindata dal modulo snd_hda_intel invece di nvidia"
-echo "in quel caso sono riuscito a far partire l'ambiente grafico staccando il cavo hdmi della 3050, facendo systemctl restart sddm, poi riattaccando il cavo e facendo modprobe nvidia"
-echo "comandi utili: \"lspci -nnk -d 10de:\", \"sudo dmesg\""
+echo "rg e' meglio di grep (non per gli script)"
+source ~/.config/zsh_stuff/todo
