@@ -10,6 +10,7 @@ st-scrollback-mouse
 st-scrollback-mouse-altscreen
 st-scrollback-mouse-increment
 st-dynamic-cursor-color
+st-anysize
 
 
 Requirements
