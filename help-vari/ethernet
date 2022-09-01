@@ -1,7 +1,18 @@
 Posso collegare il pc e raspy con un cavo ethernet diretto per trasferire roba, visto che non so come mai, tramite rete di casa la connessione e' lenta (30Mbit/s)
 Dopo aver collegato il cavo sono riuscito a far funizonare il tutto andando in:
-	Edit connections -> Wired connection -> IPv4Settings e impostando Method a "shared to other computers"
+	(click destro sull'icona di nm-applet)
+	Edit connections -> Crea connessione Ethernet -> IPv4Settings e impostando Method a "shared to other computers"
+	Seleziona la connessione creata (left click sull'icona di np-applet)
 L'indirizzo ip locale lo trovo con "ip a" e vedendo l'ip dell'interfaccia ethernet
 L'indirizzo ip dell'altro pc lo trovo con "ip n" e vedendo l'ip dell'interfaccia ethernet
+(Proabilmente questo funziona solo dopo la prima volta che i due computer si sono parlati)
+Altrimenti l'indirizzo ip dell'altro lo trovo con "ip a" tramite ssh nell'altro computer
+
+Nelle impostazioni della connessione ethernet creata posso impostare l'indirizzo ip che verra' usato dal pc locale e la netmask della rete
+Ho fatto lo stesso lato raspy:
+	Ho sostituito dhcpcd con network-manager e ho creato la connessione come sopra
+	Ho anche impostato network-manager su raspy in modo da non generare un nuovo mac ad ogni connessione, cosi da poter associare a raspy un ip statico dal modem
+	Ho aggiunto l'indirizzo impostato nella connessione creata nel raspy al file hosts del mio pc per poterlo usare piu facilmente
 
 Per farli comunicare bisogna disabilitare il firewall o impostare regole adeguate
+Per testare velocita' di connessione usa iperf3
