@@ -1,0 +1,7 @@
+Posso collegare il pc e raspy con un cavo ethernet diretto per trasferire roba, visto che non so come mai, tramite rete di casa la connessione e' lenta (30Mbit/s)
+Dopo aver collegato il cavo sono riuscito a far funizonare il tutto andando in:
+	Edit connections -> Wired connection -> IPv4Settings e impostando Method a "shared to other computers"
+L'indirizzo ip locale lo trovo con "ip a" e vedendo l'ip dell'interfaccia ethernet
+L'indirizzo ip dell'altro pc lo trovo con "ip n" e vedendo l'ip dell'interfaccia ethernet
+
+Per farli comunicare bisogna disabilitare il firewall o impostare regole adeguate
