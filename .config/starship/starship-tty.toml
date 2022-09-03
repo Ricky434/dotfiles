@@ -1,0 +1,90 @@
+# Use custom format
+format = """
+$username@$hostname: \
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$cmd_duration\
+$status\
+$line_break\
+\\($time\\)\
+$jobs\
+$character"""
+
+# Wait 10 milliseconds for starship to check files under the current directory.
+scan_timeout = 10
+
+# Disable the newline at the start of the prompt
+add_newline = false
+
+# Prompt for multiline input
+continuation_prompt = "[>](bright-black) "
+
+[character]
+success_symbol = "[> ](bold red)"
+error_symbol = "[> ](bold purple)"
+format = "$symbol"
+
+[cmd_duration]
+min_time = 500
+format = "took [$duration](bold yellow)"
+
+[directory]
+truncation_length = 8
+truncation_symbol = ".../"
+truncate_to_repo = false
+format = "[$path]($style)[$read_only]($read_only_style) "
+style = "bold yellow"
+read_only_style = "bold red"
+read_only = " [r]"
+
+[git_branch]
+symbol = "git "
+truncation_symbol = ""
+format = "<[$symbol](bold green)[$branch]($style)> "
+style = "bold blue"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]](bold purple) )'
+staged = '[+](bold green)'
+modified = '[!](bold blue)'
+untracked = '[?](bold yellow)'
+deleted = '[x](bold red)'
+ahead = '[>]'
+behind = '[<]'
+diverged = '[<>]'
+
+
+[hostname]
+ssh_only = false
+format =  "[$hostname$ssh_symbol](bold blue)"
+trim_at = ""
+ssh_symbol = "[\\(ssh\\)](white)"
+
+[jobs]
+symbol = "*"
+format = "[$symbol$number]($style)"
+
+[status]
+style = "bold red"
+format = '[\[$common_meaning$signal_name$maybe_int\]]($style) '
+map_symbol = true
+disabled = false
+
+[time]
+disabled = false
+format = '[$time](white)'
+time_format = "%T"
+utc_time_offset = "local"
+
+[username]
+style_user = "green bold"
+style_root = "red bold"
+format = "[$user]($style)"
+disabled = false
+show_always = true
+
+[fill]
+symbol = " "

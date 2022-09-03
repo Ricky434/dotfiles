@@ -9,6 +9,28 @@
 
 #key-bindings.zsh, completion.zsh, history.zsh e theme-and-appearance.zsh rubati da oh-my-zsh, prima o poi devo studiarmeli bene e modificarli a mio piacimento
 
+# ======= TTY COLORSCHEME
+#
+if [ "$TERM" = "linux" ]; then
+    echo -en "\e]P01e222a" #black
+    echo -en "\e]P8545862" #darkgrey
+    echo -en "\e]P1e06c75" #darkred
+    echo -en "\e]P9e06c75" #red
+    echo -en "\e]P298c379" #darkgreen
+    echo -en "\e]PA98c379" #green
+    echo -en "\e]P3e5c07b" #brown
+    echo -en "\e]PBe5c07b" #yellow
+    echo -en "\e]P461afef" #darkblue
+    echo -en "\e]PC61afef" #blue
+    echo -en "\e]P5c678dd" #darkmagenta
+    echo -en "\e]PDc678dd" #magenta
+    echo -en "\e]P656b6c2" #darkcyan
+    echo -en "\e]PE56b6c2" #cyan
+    echo -en "\e]P7abb2bf" #lightgrey
+    echo -en "\e]PFc8ccd4" #white
+    clear #for background artifacting
+fi
+
 # ======= KEYBINDINGS
 #
 source ~/.config/zsh_stuff/key-bindings.zsh
@@ -59,6 +81,9 @@ ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=white'
 #
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
+if [ "$TERM" = "linux" ]; then
+  export STARSHIP_CONFIG=~/.config/starship/starship-tty.toml
+fi
 # export RPS1="(%*)"
 
 # ======= HOOK FUNCTIONS
