@@ -1,11 +1,22 @@
 syntax on
 set autoindent
-"set mouse=a
-set number
+"set mouse=
 set relativenumber
 set ignorecase
 set smartcase " smartcase needs ignore set)
 set termguicolors
+
+" ---- Per copia incolla
+" - y copia nel registro "" (default) e "0 di nvim
+" - "+y copia nel registro "+ di nvim, che corrisponde alla clipboard di X11, e
+" 	nel registro di default
+" - "*y copia nel registro "* di nvim, che corrisponde alla selezione di X11
+" 	(quella che si incolla con il middle mouse), e nel registro di default
+"
+" Lo stesso vale per p
+" Se si copia e incolla con il right mouse (l'opzione mouse deve essere
+" 	attiva) viene usato il registro "*
+" ---- 
 
 " Remappa a Esc il tasto per uscire da Terminal mode (invece di Ctrl+\+Ctrl+n)
 tnoremap <Esc> <C-\><C-n>
