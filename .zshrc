@@ -61,7 +61,6 @@ alias la='exa -lahg'
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
 alias cal='cal -m'
 alias http='noglob http' # avoids zsh globbing, so you can use [ and ] without needing to escape them
-alias emacs='emacsclient --alternate-editor= --create-frame'
 
 # ======= OTHER ZSH OPTIONS
 #

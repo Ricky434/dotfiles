@@ -1,0 +1,140 @@
+# Remove unneeded modules
+CD_MODULES="\
+	all_video\
+	boot\
+	btrfs\
+	cat\
+	chain\
+	configfile\
+	echo\
+	efifwsetup\
+	efinet\
+	ext2\
+	fat\
+	font\
+	gettext\
+	gfxmenu\
+	gfxterm\
+	gfxterm_background\
+	gzio\
+	halt\
+	help\
+	hfsplus\
+	iso9660\
+	jpeg\
+	keystatus\
+	loadenv\
+	loopback\
+	linux\
+	ls\
+	lsefi\
+	lsefimmap\
+	lsefisystab\
+	lssal\
+	memdisk\
+	minicmd\
+	normal\
+	ntfs\
+	part_apple\
+	part_msdos\
+	part_gpt\
+	password_pbkdf2\
+	png\
+	probe\
+	reboot\
+	regexp\
+	search\
+	search_fs_uuid\
+	search_fs_file\
+	search_label\
+	sleep\
+	smbios\
+	squash4\
+	test\
+	true\
+	video\
+	xfs\
+	zfs\
+	zfscrypt\
+	zfsinfo\
+	"
+CD_MODULES="$CD_MODULES\
+	cpuid\
+	play\
+	tpm\
+	"
+GRUB_MODULES="$CD_MODULES\
+	cryptodisk\
+	gcry_arcfour\
+	gcry_blowfish\
+	gcry_camellia\
+	gcry_cast5\
+	gcry_crc\
+	gcry_des\
+	gcry_dsa\
+	gcry_idea\
+	gcry_md4\
+	gcry_md5\
+	gcry_rfc2268\
+	gcry_rijndael\
+	gcry_rmd160\
+	gcry_rsa\
+	gcry_seed\
+	gcry_serpent\
+	gcry_sha1\
+	gcry_sha256\
+	gcry_sha512\
+	gcry_tiger\
+	gcry_twofish\
+	gcry_whirlpool\
+	"
+# Grub install and make config. Sbat and some of the modules are needed for secure boot, otherwise it won't work
+sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi --modules=${GRUB_MODULES} --sbat /usr/share/grub/sbat.csv --bootloader-id=GRUB
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+# If you stop here you can only boot without secure boot
+
+# Need to install package shim-signed first
+sudo cp /usr/share/shim-signed/shimx64.efi /boot/efi/EFI/GRUB/
+sudo cp /usr/share/shim-signed/mmx64.efi /boot/efi/EFI/GRUB/
+# Create Shim boot entry (change partition and partition number to the corresponding boot partition)
+sudo efibootmgr --verbose --disk /dev/sda --part 1 --create --label "Shim" --loader /EFI/GRUB/shimx64.efi
+
+# Create a key and its associated certificates
+openssl req -newkey rsa:4096 -nodes -keyout MOK.key -new -x509 -sha256 -days 3650 -subj "/CN=my Machine Owner Key/" -out MOK.crt
+openssl x509 -outform DER -in MOK.crt -out MOK.cer
+# Copy key and cert to boot for convenience
+sudo cp MOK.key /boot/MOK.key
+sudo cp MOK.crt /boot/MOK.crt
+# Copy cer to efi partition (you'll need to choose it the first time you boot with shim)
+sudo cp MOK.cer /boot/efi/EFI/MOK.cer
+
+# Sign bootloader
+sudo sbsign --key /boot/MOK.key --cert /boot/MOK.crt --output /boot/efi/EFI/GRUB/grubx64.efi /boot/efi/EFI/GRUB/grubx64.efi
+# Sign kernel:
+sudo sbsign --key /boot/MOK.key --cert /boot/MOK.crt --output /boot/vmlinuz-linux /boot/vmlinuz-linux
+
+# Now you need to set Shim first in the boot order and enable secure boot
+# NOTE: if you only do one of the two it WON'T WORK
+
+# EVERY TIME you reinstall grub you need to do this, except creating the key and certs (you can reuse them) and signing the kernel
+# (I don't know if you have to re-create the shim boot entry, but it doesn't hurt to do it
+
+# --- pacman hook to sign the kernel each time it gets updated
+#/etc/pacman.d/hooks/999-sign_kernel_for_secureboot.hook
+#
+#[Trigger]
+#Operation = Install
+#Operation = Upgrade
+#Type = Package
+#Target = linux
+#Target = linux-lts
+#Target = linux-hardened
+#Target = linux-zen
+#
+#[Action]
+#Description = Signing kernel with Machine Owner Key for Secure Boot
+#When = PostTransaction
+#Exec = /usr/bin/find /boot/ -maxdepth 1 -name 'vmlinuz-*' -exec /usr/bin/sh -c 'if ! /usr/bin/sbverify --list {} 2>/dev/null | /usr/bin/grep -q "signature certificates"; then /usr/bin/sbsign --key /boot/MOK.key --cert /boot/MOK.crt --output {} {}; fi' ;
+#Depends = sbsigntools
+#Depends = findutils
+#Depends = grep

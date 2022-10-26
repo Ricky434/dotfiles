@@ -3,7 +3,7 @@
 ALL_config="/etc/mkinitcpio.conf"
 ALL_kver="/boot/vmlinuz-linux"
 
-PRESETS=('default' 'fallback' 'provavm')
+PRESETS=('default' 'fallback' 'noPassthrough')
 
 #default_config="/etc/mkinitcpio.conf"
 default_image="/boot/initramfs-linux.img"
@@ -13,6 +13,6 @@ default_image="/boot/initramfs-linux.img"
 fallback_image="/boot/initramfs-linux-fallback.img"
 fallback_options="-S autodetect"
 
-provavm_config="/etc/mkinitcpio-custom.conf"
-provavm_image="/boot/initramfs-provavm.img"
-#provavm_options=""
+noPassthrough_config="/etc/mkinitcpio-custom.conf"
+noPassthrough_image="/boot/initramfs-noPassthrough.img"
+#default_options=""

@@ -43,6 +43,10 @@ case ${GRUB_DEVICE} in
   ;;
 esac
 
+if [ "x${GRUB_CMDLINE_LINUX_RECOVERY}" = "x" ] ; then
+  GRUB_CMDLINE_LINUX_RECOVERY=single
+fi
+
 # Default to disabling partition uuid support to maintian compatibility with
 # older kernels.
 GRUB_DISABLE_LINUX_PARTUUID=${GRUB_DISABLE_LINUX_PARTUUID-true}
@@ -98,8 +102,9 @@ linux_entry ()
 	  recovery)
 	      title="$(gettext_printf "%s, with Linux %s (recovery mode)" "${os}" "${version}")" ;;
           # MIO TITOLO PER LA MIA ENTRY
-          provavm)
-	      title="$(gettext_printf "%s, with Linux %s (provavm)" "${os}" "${version}")" ;;
+          noPassthrough)
+	      title="$(gettext_printf "%s, with Linux %s (noPassthrough)" "${os}" "${version}")" ;;
+
 	  *)
 	      title="$(gettext_printf "%s, with Linux %s" "${os}" "${version}")" ;;
       esac
@@ -198,9 +203,15 @@ title_correction_code=
 # yet, so it's empty. In a submenu it will be equal to '\t' (one tab).
 submenu_indentation=""
 
+# Perform a reverse version sort on the entire list.
+# Temporarily replace the '.old' suffix by ' 1' and append ' 2' for all
+# other files to order the '.old' files after their non-old counterpart
+# in reverse-sorted order.
+
+reverse_sorted_list=$(echo $list | tr ' ' '\n' | sed -e 's/\.old$/ 1/; / 1$/! s/$/ 2/' | version_sort -r | sed -e 's/ 1$/.old/; s/ 2$//')
+
 is_top_level=true
-while [ "x$list" != "x" ] ; do
-  linux=`version_find_latest $list`
+for linux in ${reverse_sorted_list}; do
   gettext_printf "Found linux image: %s\n" "$linux" >&2
   basename=`basename $linux`
   dirname=`dirname $linux`
@@ -218,8 +229,10 @@ while [ "x$list" != "x" ] ; do
   done
 
   initrd_real=
-  for i in "initrd.img-${version}" "initrd-${version}.img" "initrd-${version}.gz" \
-	   "initrd-${version}" "initramfs-${version}.img" \
+  for i in "initrd.img-${version}" "initrd-${version}.img" \
+	   "initrd-${alt_version}.img.old" "initrd-${version}.gz" \
+	   "initrd-${alt_version}.gz.old" "initrd-${version}" \
+	   "initramfs-${version}.img" "initramfs-${alt_version}.img.old" \
 	   "initrd.img-${alt_version}" "initrd-${alt_version}.img" \
 	   "initrd-${alt_version}" "initramfs-${alt_version}.img" \
 	   "initramfs-genkernel-${version}" \
@@ -317,23 +330,21 @@ while [ "x$list" != "x" ] ; do
 
   if [ "x${GRUB_DISABLE_RECOVERY}" != "xtrue" ]; then
     linux_entry "${OS}" "${version}" recovery \
-                "single ${GRUB_CMDLINE_LINUX}"
+                "${GRUB_CMDLINE_LINUX_RECOVERY} ${GRUB_CMDLINE_LINUX}"
   fi
 
 ##### MIA ENTRY PER PROVAVM: se trova il file initramfs-provavm.img la crea
-  if test -e "${dirname}/initramfs-provavm.img" ; then
-    initrd="${initrd_early} initramfs-provavm.img"
+  if test -e "${dirname}/initramfs-noPassthrough.img" ; then
+    initrd="${initrd_early} initramfs-noPassthrough.img"
 
     if test -n "${initrd}" ; then
-      gettext_printf "Found provavm initrd image(s) in %s:%s\n" "${dirname}" "${initrd_extra} ${initrd}" >&2
+      gettext_printf "Found noPassthrough initrd image(s) in %s:%s\n" "${dirname}" "${initrd_extra} ${initrd}" >&2
     fi
 
-    linux_entry "${OS}" "${version}" provavm \
+    linux_entry "${OS}" "${version}" noPassthrough \
                 "${GRUB_CMDLINE_LINUX} ${GRUB_CMDLINE_LINUX_DEFAULT}"
   fi
 ##### FINE MIA ENTRY
-
-  list=`echo $list | tr ' ' '\n' | fgrep -vx "$linux" | tr '\n' ' '`
 done
 
 # If at least one kernel was found, then we need to
