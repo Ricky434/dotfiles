@@ -1,12 +1,14 @@
 # Remove unneeded modules
+# Not all modules are present, i removed modules useless to me,
+# such as the ones to play sounds at boot, to boot from lvm/luks/raid, to mount cryptodisk, etc.
 CD_MODULES="\
 	all_video\
+	at_keyboard\
 	boot\
 	btrfs\
 	cat\
 	chain\
 	configfile\
-	echo\
 	efifwsetup\
 	efinet\
 	ext2\
@@ -16,11 +18,8 @@ CD_MODULES="\
 	gfxmenu\
 	gfxterm\
 	gfxterm_background\
-	gzio\
 	halt\
 	help\
-	hfsplus\
-	iso9660\
 	jpeg\
 	keystatus\
 	loadenv\
@@ -31,11 +30,9 @@ CD_MODULES="\
 	lsefimmap\
 	lsefisystab\
 	lssal\
-	memdisk\
 	minicmd\
 	normal\
 	ntfs\
-	part_apple\
 	part_msdos\
 	part_gpt\
 	password_pbkdf2\
@@ -47,9 +44,7 @@ CD_MODULES="\
 	search_fs_uuid\
 	search_fs_file\
 	search_label\
-	sleep\
 	smbios\
-	squash4\
 	test\
 	true\
 	video\
@@ -60,11 +55,10 @@ CD_MODULES="\
 	"
 CD_MODULES="$CD_MODULES\
 	cpuid\
-	play\
+	linuxefi\
 	tpm\
 	"
 GRUB_MODULES="$CD_MODULES\
-	cryptodisk\
 	gcry_arcfour\
 	gcry_blowfish\
 	gcry_camellia\
