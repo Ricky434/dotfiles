@@ -16,7 +16,7 @@ local startup_apps = {
     "xinput --set-prop \"Logitech G203 Prodigy Gaming Mouse\" 'libinput Accel Profile Enabled' 0, 1",
     "xset s off; xset dpms 0 0 3600",
     "nm-applet",
-    "pasystray",
+    "pasystray --no-notify",
     "redshift-gtk -t 6500:4700 -l 0.0:0.0"
 }
 

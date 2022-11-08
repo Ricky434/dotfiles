@@ -97,9 +97,9 @@ element {
 
 element-icon {
     size:                           64px;
-    horizontal-align:               0.5;
+    border:                         0px;
     background-color:               @background-alt;
-    text-color:                     inherit;
+    text-color:                     inherit;  
 }
 
 element-text {
