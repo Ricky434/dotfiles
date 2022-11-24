@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# This script checks if the gpu that should be passed through is bound to vfio, if it isn't it stops qemu, avoiding getting libvirt stuck forever
+#
+# After that, it reserves only 2 cores for the host while the vm is running
+
+command=$2
+
+if [ "$command" = "prepare" ]; then
+	vfioIds=$(sed 's/.*vfio-pci ids=//' < /etc/modprobe.d/vfio.conf)
+	dmesgOut=$(sudo dmesg | grep -i vfio)
+	res=false
+
+	# Check if at least one of the ids of gpu that should be bound by vfio show up in dmesg
+	for vfioId in ${vfioIds//,/ }
+	do
+	    if [[ "$dmesgOut" == *"$vfioId"* ]]; then
+		res=true
+	    fi
+	done
+
+	if [ "$res" = false ]; then
+		echo "### error check: GPU not bound by vfio, make sure to have passed it through" 1>&2
+		exit 1
+	fi
+elif [ "$command" = "started" ]; then
+    systemctl set-property --runtime -- system.slice AllowedCPUs=0,8,1,9
+    systemctl set-property --runtime -- user.slice AllowedCPUs=0,8,1,9
+    systemctl set-property --runtime -- init.scope AllowedCPUs=0,8,1,9
+elif [ "$command" = "release" ]; then
+    systemctl set-property --runtime -- system.slice AllowedCPUs=0-15
+    systemctl set-property --runtime -- user.slice AllowedCPUs=0-15
+    systemctl set-property --runtime -- init.scope AllowedCPUs=0-15
+fi
