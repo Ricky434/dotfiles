@@ -12,12 +12,15 @@ local startup_apps = {
 	-- "$HOME/.local/bin/xinput-tab",
 	-- "xbacklight -set 45",
     -- Add your startup programs here
-    --"/usr/lib/polkit-kde-authentication-agent-1",
+    "/usr/lib/polkit-kde-authentication-agent-1",
     "xinput --set-prop \"Logitech G203 Prodigy Gaming Mouse\" 'libinput Accel Profile Enabled' 0, 1",
     "xset s off; xset dpms 0 0 3600",
     "nm-applet",
     "pasystray --no-notify",
-    "redshift-gtk -t 6500:4700 -l 0.0:0.0"
+    --"redshift-gtk -t 6500:4700 -l 0.0:0.0"
+    --This redshift accounts for gamma in my first monitor, which with display-port needs adjustment. I adjusted it in nvidia-settings, but they get overridden by redshift
+    "redshift-gtk -t 6500:4700 -l 0.0:0.0 -m randr:crtc=0 -g 1.15",
+    "redshift-gtk -t 6500:4700 -l 0.0:0.0 -m randr:crtc=1",
 }
 
 
