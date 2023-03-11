@@ -30,3 +30,4 @@ Per il poco che ho provato, Hyper-V crea solo enormi problemi, forse cambiando q
 Per shared folder: samba share: starta smb.service, collegati da windows a \\indirizzo-ip\nome-cartella (nome-cartella= [shared] in smb.conf), ricordati di aggiungere regola al firewall dell'host
 
 Ho aggiunto un hook che parte prima di far partire la vm per controllare che la gpu sia bindata da vfio
+
