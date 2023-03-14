@@ -1,4 +1,5 @@
   -- Base
+import Control.Concurrent -- per lo sleep dopo xmobar, soluzione momentanea per non farlo nascere in secondo piano
 import XMonad
 import System.Directory
 import System.IO (hPutStrLn)
@@ -362,10 +363,11 @@ myKeys =
 
 main :: IO ()
 main = do
-    -- Launching three instances of xmobar on their monitors.
+    -- Xmobar
     xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/xmobarrc")
+    threadDelay 100000
     -- the xmonad, ya know...what the WM is named after!
-    xmonad $ ewmh def
+    xmonad $ ewmh $ def
         { manageHook         = myManageHook <+> manageDocks
         -- , handleEventHook    = docks
                                -- Uncomment this line to enable fullscreen support on things like YouTube/Netflix.

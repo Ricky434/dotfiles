@@ -967,7 +967,7 @@ schemes:
             text:       CellForeground
             background: '#3e4451' # syntax-selection-color
         normal:
-            black:      '#5c6370' # mono-3
+            black:      '#282c34' # mono-3
             red:        '#e06c75' # red 1
             green:      '#98c379'
             yellow:     '#e5c07b' # orange 2

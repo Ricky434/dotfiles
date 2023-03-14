@@ -19,6 +19,9 @@ scan_timeout = 10
 # Disable the newline at the start of the prompt
 add_newline = false
 
+# Prompt for multiline input
+continuation_prompt = "[❯](bright-black) "
+
 [character]
 success_symbol = "[❯ ](bold red)"
 error_symbol = "[❯ ](bold purple)"
@@ -52,9 +55,11 @@ deleted = '[✘](bold red)'
 
 
 [hostname]
+
 ssh_only = false
-format =  "[$hostname](bold blue)"
+format =  "[$hostname$ssh_symbol](bold blue)"
 trim_at = ""
+ssh_symbol = "\\(🌐\\)"
 
 [jobs]
 symbol = "*"
@@ -74,7 +79,7 @@ disabled = false
 disabled = false
 format = '[$time](white)'
 time_format = "%T"
-utc_time_offset = "+1"
+utc_time_offset = "local"
 
 [username]
 style_user = "green bold"
@@ -82,3 +87,6 @@ style_root = "red bold"
 format = "[$user]($style)"
 disabled = false
 show_always = true
+
+[fill]
+symbol = " "

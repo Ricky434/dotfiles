@@ -15,7 +15,7 @@ theme.font_large = "Ubuntu 12"
 theme.font_large_bold = "Ubuntu bold 12"
 theme.font_small =  "Ubuntu 9"
 theme.font_extra_small =  "Ubuntu 9"
-theme.taglist_font = "Ubuntu Nerd Font 14"
+theme.taglist_font = "Ubuntu Nerd Font 20"
 
 -- Colors Definations
 local colors = {}
@@ -272,6 +272,7 @@ theme.layout_max = theme_path.."layouts/max.svg"
 theme.layout_fullscreen = theme_path.."layouts/fullscreen.svg"
 theme.layout_tile = theme_path.."layouts/tile.svg"
 theme.layout_dwindle = theme_path.."layouts/dwindle.svg"
+theme.layout_cornernw = theme_path.."layouts/cornernw.png"
 
 -- Hotkey popup
 theme.hotkeys_border_width = dpi(1)
@@ -287,7 +288,7 @@ theme.awesome_icon = theme_assets.awesome_icon(
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 
-theme.icon_theme = "Material-Originals-Icons-Blue-dark"
+theme.icon_theme = ""
 
 return theme
 

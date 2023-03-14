@@ -2,9 +2,11 @@ syntax on
 set autoindent
 "set mouse=
 set relativenumber
+set number
 set ignorecase
 set smartcase " smartcase needs ignore set)
 set termguicolors
+set undofile " make undo history persist after closing files
 
 " ---- Per copia incolla
 " - y copia nel registro "" (default) e "0 di nvim
