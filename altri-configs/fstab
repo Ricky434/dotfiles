@@ -11,12 +11,15 @@ UUID=22C9-41B8      				/boot/efi     vfat      rw,relatime,fmask=0022,dmask=002
 # /swapfile
 /swapfile					none	      swap	defaults 0 0
 
-# /dev/sdb2 (C:)
-UUID=9E0E0AB80E0A898B                           /mnt/chicken  ntfs      defaults,noatime 0 2
+# /dev/sdc2 (C:)
+UUID=FEFEF1A1FEF151FF                           /mnt/chicken  ntfs      defaults,noatime 0 2
 
-# /dev/sdb3 (Vulture)
+# /dev/sdc4 (Vulture)
 UUID=e0f3edd8-0dc2-4a88-9ae6-37434824ced1       /mnt/vulture  ext4      defaults,noatime 0 2
 
 
-# /dev/sdc2 (D:)
+# /dev/sdd2 (D:)
 UUID=B47AAC9C7AAC5D3C                           /mnt/duck     ntfs      defaults,noatime 0 2
+
+# /dev/sdb2 (E:)
+UUID=1474FDDC74FDC092                           /mnt/emu     ntfs      defaults,noatime 0 2
