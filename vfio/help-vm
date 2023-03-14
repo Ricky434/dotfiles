@@ -3,7 +3,7 @@ Ho aggiunto il kernel parameter in /etc/modprobe.d/vfio.conf per dire a vfio qua
 Ho fatto un nuovo mikinitcpio.conf chiamato mkinitcpio-custom.conf, con il quale genero l'image initramfs-provavm.conf
 Si rigenera automaticamente da solo perche ho aggiunto il profilo provavm in /etc/mkinitcpio.d/linux.preset
 
-Ho aggiunto un coso per generare la entry in grub per l'image initramfs-provavm.img in /etc/grub.d/10_linux (inizia al commento ##### MIA ENTRY) 
+Ho aggiunto una entry hardcodata in grub per l'image initramfs-provavm.img in /etc/grub.d/09_linux_noPassthrough 
 
 Ho patchato il vbios della mia gpu e ho detto a kvm di usarlo
 
@@ -24,10 +24,14 @@ Per far funzionare looking glass bisogna attaccare un cavo hdmi alla scheda pass
 
 Per usare un singolo mouse e tastiera glieli passo come input evdev (archwiki) (IL TOGGLE E' left-CTRL+right-CTRL)
 
-Per il poco che ho provato, Hyper-V crea solo enormi problemi, forse cambiando qualche parte dell'xml della vm lo si rende utile
-
+Per il poco che ho provato, Hyper-V crea solo enormi problemi, forse cambiando qualche parte dell'xml della vm lo si rende utile. Edit: riprovato da poco e non mi fa neanche bootare windows se provo ad attivarlo (tip: se windows non si avvia e da schermo nero, attacca alla vm un display Spice, cosi puoi vedere eventuali errori e schermate per fare safe boot)
 
 Per shared folder: samba share: starta smb.service, collegati da windows a \\indirizzo-ip\nome-cartella (nome-cartella= [shared] in smb.conf), ricordati di aggiungere regola al firewall dell'host
 
 Ho aggiunto un hook che parte prima di far partire la vm per controllare che la gpu sia bindata da vfio
+Ho anche aggiunto nello script una parte che isola le cpu associate alla vm mentre e' in esecuzione
+Ho anche aggiunto nello script una cosa che disabilita il secondo monitor in linux, attualmente non funziona perche cerca di fare il check per evitare di andare in errore con wayland, ma penso che la variabile che checka non sia settata nell'environment che lo fa partire
+Ho anche aggiunto nello script una funzione che cerca di allocare le hugepages prima di partire
 
+Ho provato ad inserire nell'xml deglio iothreads per i dischi, non so se aiuta.
+Al momento e' meglio non usare host-passthrough, ma emulare EPYC, altrimenti con il ryzen 7 2700 la cache L3 e' lentissima. Se prima o poi questa cosa viene sistemata devo provare a mettere cache mode=passthrough per vedere se migliora le prestazioni
