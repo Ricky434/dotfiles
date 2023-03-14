@@ -57,36 +57,19 @@ theme.mode = "dark"
 ## 💕 Features
 <h3 align="center">Control center and Notification center</h3>
 
-![control center](./screen-shots/glassy1.png)
-
 <h3 align="center">Calendar and weather widget</h3>
-
-![calender](./screen-shots/glassy2.png)
-
 
 <h3 align="center">App Launcher</h3>
 
-![app launcher](./screen-shots/glassy3.png)
-
 <h3 align="center">Exit Screen</h3>
-
-![exit screen](./screen-shots/glassy4.png)
 
 <h3 align="center">Lock Screen</h3>
 
-![lock screen](./screen-shots/glassy5.png)
-
 <h3 align="center">Kde plasma style task manager</h3>
-
-![tasklist](./screen-shots/tasklist.png)
 
 <h3 align="center">Icon only task manager</h3>
 
-![icon only tasklist](./screen-shots/icon-only-tasklist.png)
-
 <h3 align="center">Screen shot and Recording tool(very basic)</h3>
-
-![screen shot tool](./screen-shots/dark4.png)
 
 ### Other features
 - Support for multi head
