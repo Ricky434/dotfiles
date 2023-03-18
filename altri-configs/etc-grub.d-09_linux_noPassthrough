@@ -15,7 +15,7 @@ menuentry 'Arch Linux noPassthrough' --class arch --class gnu-linux --class gnu 
 	  search --no-floppy --fs-uuid --set=root 90561f19-d06b-4443-90df-36264d4b189c
 	fi
 	echo	'Loading Linux linux ...'
-	linux	/boot/vmlinuz-linux root=UUID=90561f19-d06b-4443-90df-36264d4b189c rw  loglevel=3 amd_iommu=on 
+	linux	/boot/vmlinuz-linux root=UUID=90561f19-d06b-4443-90df-36264d4b189c rw  loglevel=3 amd_iommu=on pci=noats
 	echo	'Loading initial ramdisk ...'
 	initrd	/boot/initramfs-noPassthrough.img
 }

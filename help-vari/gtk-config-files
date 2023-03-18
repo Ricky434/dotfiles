@@ -5,4 +5,6 @@
 /etc/gtk-2.0/gtkrc
 /etc/gtk-2.0/gtkrc
 
+for cursor: /usr/share/icons/default/index.theme
+
 GTK_THEME in .zshenv
