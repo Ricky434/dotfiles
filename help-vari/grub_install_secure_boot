@@ -133,4 +133,4 @@ sudo sbsign --key /boot/MOK.key --cert /boot/MOK.crt --output /boot/vmlinuz-linu
 #Depends = findutils
 #Depends = grep
 
-#OTHER NOTE: as of now grub doesn't like something about this, probably because it's trying to load fonts that are not signed (https://bbs.archlinux.org/viewtopic.php?id=282076). I should probably try to sign them in the future
+#OTHER NOTE: This works up until version 2:2.06-4 of grub (I didn't test version 2:2.06-5). With newer versions grub probably tries to load fonts that are not signed during boot (https://bbs.archlinux.org/viewtopic.php?id=282076) and shows the message "security policy violated", and doesn't set the right resolution but still boots.
