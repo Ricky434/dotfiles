@@ -38,6 +38,8 @@ awful.rules.rules = {
 			  "xtightvncviewer",
 			  "Pavucontrol",
 			  "Gufw.py",
+				"Galculator",
+				"Shutter",
 			},
 
 			-- Note that the name property shown in xprop might be set slightly after creation of the client

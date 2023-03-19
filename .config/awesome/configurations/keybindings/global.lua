@@ -299,14 +299,13 @@ local globalkeys = gears.table.join(
 		end,
 		{description = 'next track', group = 'hotkeys'}
 	),
-
 	awful.key(
 		{},
-		'Print',
+		'XF86Calculator',
 		function()
-			awful.spawn.single_instance('spectacle', false)
+			awful.spawn('galculator', false)
 		end,
-		{description = 'take a screenshot', group = 'hotkeys'}
+		{description = 'calculator', group = 'hotkeys'}
 	),
 	awful.key(
 		{ modkey, "Control"},
@@ -320,9 +319,17 @@ local globalkeys = gears.table.join(
 		{},
 		'Print',
 		function()
-			awful.spawn.single_instance('spectacle', false)
+			awful.spawn.with_shell('scrot "~/Pictures/Screenshots/%Y-%m-%d_%T.png" -pfs -l style=dash -q 100', false)
 		end,
-		{description = 'take a screenshot', group = 'hotkeys'}
+		{description = 'take a screenshot from a selection', group = 'hotkeys'}
+	),
+	awful.key(
+		{"Shift"},
+		'Print',
+		function()
+			awful.spawn.with_shell('scrot "~/Pictures/Screenshots/%Y-%m-%d_%T.png" -p -q 100', false)
+		end,
+		{description = 'take a screenshot of the whole screen', group = 'hotkeys'}
 	),
 	awful.key(
 		{ modkey, "Shift"},
