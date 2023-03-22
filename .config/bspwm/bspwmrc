@@ -8,7 +8,10 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 nitrogen --restore 
 
 #fai partire il compositor
-picom &
+pkill picom; picom &
+
+pkill cbatticon; cbatticon &
+pkill nm-applet; nm-applet &
 
 #fai partire il polkit agent (uso quello di kde)
 /usr/lib/polkit-kde-authentication-agent-1 &
@@ -28,7 +31,7 @@ xset dpms 0 0 3600
 pkill redshift-gtk
 redshift-gtk -t 6500:4700 &
 
-bspc monitor -d dev www sys doc vid hid
+bspc monitor -d 1 2 3 4 5 6
 
 bspc config border_width         2
 bspc config window_gap          12
