@@ -27,6 +27,7 @@ Vai alla parentesi corrispondente alla corrente: %
 Sostituisci: :s/thee/the/ (sostituisce la prossima istanza di thee con the), s/thee/the/g (sostituisce tutte le istanze), s/thee/the/gc (ti chiede a ogni istanza se vuoi sostituire)
 Torna alla posizione precedente: ''
 Esegui comando shell: :!comando (es: :!ls)
+
 Visual mode: v, vap (seleziona tutto il paragrafo), V (seleziona linea per linea), Ctrl+V (seleziona blocco)
 Copia: y (copia roba selezionata in visual), yap (copia paragrafo), yy copia tutta la linea
 Esegui ultimo comando: . (funziona anche con change) (prova a usarlo per aggiungere roba alla fine di tante linee con A)
@@ -35,3 +36,25 @@ Esiste uno spell checker con un sacco di roba, cerca su internet se ti interessa
 Indenta: >>
 Deindenta: <<
 https://vim.rtorr.com/ (vim cheat sheet)
+
+Se per esempio con Lsp fai goto-definition, puoi tornare indietro con Ctrl-O e andare avanti con Ctrl-I
+
+--------
+g,gg,G
+a,i,A,I
+w,e,b, (W,B skippano i segni di punteggiatura)
+$,^,0
+f<lettera> (va avanti alla prima lettera), F<lettera>, t/T fanno la stessa cosa ma si fermano una lettera prima
+, e ; per ripetere il comando sopra avanti e indietro
+o,O (o sotto, O sopra)
+{,} (naviga paragrafi)
+Ctrl-d, Ctrl-u (avanti, indietro di mezza pagina)
+*,# (cerca parola su cui hai il cursore)
+% (vai alla matching parentesi di quella che sta in questa linea) (usare a{ e' meglio)
+= (indenta automaticamente)
+<,> (<<,>> in normal mode) (indenta a mano)
+
+iw, i", i(, ..., aw, a", a(, ... (non devi per forza starci dentro)
+
+Ctrl-a,Ctrl-x (incrementa/diminuisci di [count] il numero selezionato sia in normal che in visual mode)
+g-Ctrl-a/x (come sopra ma se lo fai su piu linee ognuna ricevera' un incremento in piu')
