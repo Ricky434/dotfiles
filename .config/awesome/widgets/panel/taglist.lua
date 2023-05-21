@@ -26,7 +26,7 @@ local taglist = function (s)
 
     -- Each screen has its own tag table.
 	--local tag_names = {"爵", "", "", "", "", ""}
-	local tag_names = {"", "", "", "ﲶ", "", ""}
+	local tag_names = {"", "", "󰆚", "󰞸", "󰼂", ""}
 	for idx, name in ipairs(tag_names) do
 		local selected = false
 		if idx == 1 then 

@@ -54,8 +54,8 @@ local cpu_icon = wibox.widget{
         {
             {
                 widget = wibox.widget.textbox,
-                font = "SauceCodePro Nerd Font Mono 12",
-                text = ""
+                font = "SauceCodePro Nerd Font Mono 9",
+                text = " "
             },
             top = dpi(4),
             bottom = dpi(6),
@@ -104,8 +104,8 @@ local ram_icon = wibox.widget{
         {
             {
                 widget = wibox.widget.textbox,
-                font = "SauceCodePro Nerd Font Mono 12",
-                text = ""
+                font = "SauceCodePro Nerd Font Mono 9",
+                text = " "
             },
             top = dpi(4),
             bottom = dpi(8),
