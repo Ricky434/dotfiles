@@ -37,7 +37,7 @@ local function open_nvim_tree(data)
     return
   end
 
-  if directory then  
+  if directory then
     -- change to the directory
     vim.cmd.cd(data.file)
   end
