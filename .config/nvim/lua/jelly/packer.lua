@@ -54,4 +54,5 @@ return require('packer').startup(function(use)
     use 'nvim-tree/nvim-tree.lua'
     --use 'm4xshen/autoclose.nvim'
     use 'windwp/nvim-autopairs'
+    use 'ray-x/lsp_signature.nvim'
 end)

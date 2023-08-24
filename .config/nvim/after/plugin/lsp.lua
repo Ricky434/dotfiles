@@ -3,12 +3,17 @@ local lsp = require('lsp-zero').preset("recommended")
 -- (Optional) Configure lua language server for neovim
 lsp.nvim_workspace()
 
+require "lsp_signature".setup(cfg)
+
 local cmp = require('cmp')
+local cmp_action = require('lsp-zero').cmp_action()
 
 lsp.setup_nvim_cmp({
   mapping = lsp.defaults.cmp_mappings({
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-r>'] = cmp.mapping.abort(),
+    ['<Tab>'] = cmp_action.luasnip_supertab(),
+    ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
   })
 })
 
