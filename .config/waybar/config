@@ -1,0 +1,214 @@
+{
+	"layer": "top",
+	"position": "bottom",
+
+	"modules-left": [
+		"hyprland/workspaces",
+		"custom/arrow10",
+		"hyprland/window"
+	],
+
+	"modules-right": [
+		"custom/arrow9",
+		"pulseaudio",
+		"custom/arrow8",
+		"network",
+		"custom/arrow7",
+		"memory",
+		"custom/arrow6",
+		"cpu",
+		"custom/arrow5",
+		"temperature",
+		"custom/arrow4",
+		"battery",
+		"custom/arrow3",
+		"hyprland/language",
+		"custom/arrow2",
+		"tray",
+		"clock#date",
+		"custom/arrow1",
+		"clock#time"
+	],
+
+	// Modules
+
+	"battery": {
+		"interval": 10,
+		"states": {
+			"warning": 30,
+			"critical": 15
+		},
+		"format-time": "{H}:{M:02}",
+		"format": "{icon} {capacity}% ({time})",
+		"format-charging": " {capacity}% ({time})",
+		"format-charging-full": " {capacity}%",
+		"format-full": "{icon} {capacity}%",
+		"format-alt": "{icon} {power}W",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		],
+		"tooltip": false
+	},
+
+	"clock#time": {
+		"interval": 10,
+		"format": "{:%H:%M}",
+		"tooltip": false
+	},
+
+	"clock#date": {
+		"interval": 20,
+		"format": "{:%e %b %Y}",
+		"tooltip": true,
+		"tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "on-click": "kitty -e calcurse"
+	},
+
+	"cpu": {
+		"interval": 5,
+		"tooltip": false,
+		"format": " {usage}%",
+		"format-alt": " {load}",
+		"states": {
+			"warning": 70,
+			"critical": 90
+		}
+	},
+
+	"hyprland/language": {
+		"format": " {}",
+		"min-length": 5,
+		"on-click": "hyprctl switchxkblayout keychron-keychron-q1 next",
+		"tooltip": false,
+        "format-en": "us",
+        "format-en-intl": "intl"
+	},
+
+	"memory": {
+		"interval": 1,
+		"format": " {used}G/{total}G",
+		"states": {
+			"warning": 70,
+			"critical": 90
+		},
+		"tooltip": false
+	},
+
+	"network": {
+		"interval": 5,
+		"format-wifi": " {ifname}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+		"format-ethernet": " {ifname}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+		"format-disconnected": "No connection",
+		"format-alt": " {ipaddr}/{cidr}",
+		"tooltip-format-wifi": "{essid}"
+	},
+
+	"hyprland/window": {
+		"format": "{}",
+		"max-length": 100,
+		"tooltip": false,
+        //"separate-outputs": true
+	},
+
+	"hyprland/workspaces": {
+     "on-scroll-up": "hyprctl dispatch workspace m+1",
+     "on-scroll-down": "hyprctl dispatch workspace m-1",
+     "format": "{name}"
+	},
+
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		//"format-bluetooth": "{icon} {volume}%",
+		"format-muted": "",
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": ["", ""]
+		},
+		"scroll-step": 1,
+        "on-click": "pulseaudio-control --node-blacklist 'alsa_output.pci-0000_25_00.1.hdmi-stereo-extra3' next-node",
+		"on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+		"tooltip": "{desc}"
+	},
+
+	"temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
+		"critical-threshold": 90,
+		"interval": 5,
+		"format": "{icon} {temperatureC}°",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		],
+		"tooltip": false
+	},
+
+	"tray": {
+		"icon-size": 18
+		//"spacing": 10
+	},
+
+	"custom/arrow1": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow2": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow3": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow4": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow5": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow6": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow7": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow8": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow9": {
+		"format": "",
+		"tooltip": false
+	},
+
+	"custom/arrow10": {
+		"format": "",
+		"tooltip": false
+	}
+}
+
+// vi:ft=jsonc
