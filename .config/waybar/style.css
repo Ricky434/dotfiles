@@ -47,12 +47,12 @@
 
 /* Reset all styles */
 * {
-	border: none;
+	/*border: none;*/
 	border-radius: 0;
 	min-height: 0;
-	margin: 0;
+	/*margin: 0;*/
 	padding: 0;
-	box-shadow: none;
+	/*box-shadow: none;*/
 	text-shadow: none;
 	icon-shadow: none;
 }
@@ -269,3 +269,41 @@ window#waybar.fullscreen #window{
 	background: transparent;
 }
 
+/* Restore most of the Adwaita teme for tray menus */
+#tray * {
+    font-family: "Cantarell";
+    font-size: 14.66666px;
+}
+
+#tray decoration {
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
+#tray check {
+	min-height: 14px;
+	min-width: 14px;
+	border-radius: 3px;
+}
+
+#tray menu {
+	padding-bottom: 4px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+    background: rgb(47,47,47);
+    color: rgb(238,238,256);
+}
+
+#tray menuitem {
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+#tray arrow {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	padding: 4px;
+	min-height: 16px;
+}
