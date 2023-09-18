@@ -11,37 +11,36 @@
 /* Styles */
 
 /* Colors (gruvbox) */
-@define-color black	#282828;
-@define-color red	#cc241d;
-@define-color green	#98971a;
-@define-color yellow	#d79921;
-@define-color blue	#458588;
-@define-color purple	#b16286;
-@define-color aqua	#689d6a;
-@define-color gray	#a89984;
-@define-color brgray	#928374;
-@define-color brred	#fb4934;
-@define-color brgreen	#b8bb26;
-@define-color bryellow	#fabd2f;
-@define-color brblue	#83a598;
-@define-color brpurple	#d3869b;
-@define-color braqua	#8ec07c;
-@define-color white	#ebdbb2;
-@define-color bg2	#504945;
-
+@define-color black	#282c34;
+@define-color red	#e06c75;
+@define-color green	#98c379;
+@define-color yellow	#e5c07b;
+@define-color blue	#61afef;
+@define-color purple	#c678dd;
+@define-color aqua	#56b6c2;
+@define-color gray	#abb2bf;
+@define-color brred	#e06c75;
+@define-color brgreen	#98c379;
+@define-color bryellow	#e5c07b;
+@define-color brblue	#61afef;
+@define-color brpurple	#c678dd;
+@define-color braqua	#56b6c2;
+@define-color brgray	#abb2bf;
+@define-color white	#d8dee9;
+@define-color bg2	#393f4a;
 
 @define-color warning 	@bryellow;
 @define-color critical	@red;
 @define-color mode	@black;
 @define-color unfocused	@bg2;
-@define-color focused	@braqua;
+@define-color focused	@blue;
 @define-color inactive	@purple;
-@define-color sound	@brpurple;
-@define-color network	@purple;
-@define-color memory	@braqua;
-@define-color cpu	@green;
-@define-color temp	@brgreen;
-@define-color layout	@bryellow;
+@define-color sound	@yellow;
+@define-color network	@green;
+@define-color memory	@blue;
+@define-color cpu	@purple;
+@define-color temp	@red;
+@define-color layout	@gray;
 @define-color battery	@aqua;
 @define-color date	@black;
 @define-color time	@white;
@@ -133,7 +132,7 @@
 }
 
 /* Active (on focused output) */
-#workspaces button.focused {
+#workspaces button.active {
 	color: @black;
 	background: @focused;
 }
@@ -167,7 +166,7 @@ window#waybar.fullscreen #window{
 
 #network {
 	background: @network;
-	color: @white;
+	color: @black;
 }
 
 #memory {
@@ -177,7 +176,7 @@ window#waybar.fullscreen #window{
 
 #cpu {
 	background: @cpu;
-	color: @white;
+	color: @black;
 }
 
 #temperature {
@@ -224,7 +223,8 @@ window#waybar.fullscreen #window{
 #custom-arrow3 {
 	font-size: 11pt;
 	color: @layout;
-	background: @battery;
+	/*background: @battery;*/
+    background:@temp;
 }
 
 #custom-arrow4 {
