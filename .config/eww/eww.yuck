@@ -1,0 +1,104 @@
+(defwindow example
+            :monitor 0
+            :geometry (geometry :x "0%"
+                                :y "20px"
+                                :width "90%"
+                                :height "30px"
+                                :anchor "top center")
+            :stacking "fg"
+            :reserve (struts :distance "40px" :side "top") ;x11
+            :windowtype "dock" ;x11
+            :wm-ignore false ;x11
+
+            :exclusive true ;wayland
+    (labeled-container :name "kek"
+     (greeter :text "down: ${round(EWW_NET.wlp39s0f3u1.NET_DOWN/1024, 0)}Kb up: ${round(EWW_NET.wlp39s0f3u1.NET_UP/1024, 0)}Kb"
+      :name "Tim"
+      )
+     (label :text time :class "boh container")
+     (label :text temp :class "boh")
+     "${round(EWW_RAM.used_mem/1024/1024, 0)}MB"
+     (box
+        (for entry in my-json
+            (button :onclick "notify-send 'click' 'button ${entry}'"
+              entry)))
+     )
+)
+
+(defwidget greeter [?text name]
+    (box :orientation "horizontal"
+         :halign "center"
+      text
+      (button :onclick "notify-send 'Hello', 'Hello, ${name}'"
+        "Greet")))
+
+(defwidget labeled-container [name]
+    (box :class "container"
+        name
+        (children)))
+
+(defwidget two-boxes []
+    (box
+        (box :class "first" (children :nth 0))
+        (box :class "second" (children :nth 1))))
+
+(defvar foo "initial value")
+(defpoll time :interval "1s"
+              :initial "initial-value"
+              :run-while true
+    `date +%H:%M`)
+(deflisten temp :initial "whatever"
+    `/home/jelly/.config/awesome/scripts/temp.sh`)
+
+(defvar my-json "[1,2,3]")
+
+; ###########################
+(defwindow bar
+            :monitor 0
+            :geometry (geometry :x "0%"
+                                :y "0px"
+                                :width "100%"
+                                :height "10px"
+                                :anchor "bottom center")
+            :stacking "fg"
+            :reserve (struts :distance "40px" :side "top") ;x11
+            :windowtype "dock" ;x11
+            :wm-ignore false ;x11
+            :exclusive true ;wayland
+    (box :space-evenly false :orientation "h"
+        (box :class "left" :halign "start" :hexpand true
+            "ciao"
+        )
+        (box :class "center" :halign "fill" :hexpand true
+            "kek"
+        )
+        (box :class "right" :halign "end" :hexpand true :spacing 5 :space-evenly false
+            (label :text "   ${round(EWW_CPU.avg,0)}%" :class "cpu")
+            (spacer)
+            (label :text " ${round(EWW_TEMPS.K10TEMP_TCTL,0)}°C" :class "temp")
+            (spacer)
+            (label :text "   ${round(EWW_RAM.used_mem/1024/1024,0)}MB" :class "ram")
+            (spacer)
+            (label :text net :class "net")
+            (spacer)
+            (label :text "kb");kb
+            (spacer)
+            (label :text time :class "time")
+            (spacer)
+            (box :height 20 (systray))
+        )
+    )
+)
+
+(defwindow calendar
+            :monitor 0
+            :geometry (geometry :x "100px"
+                                :y "20px"
+                                :width "200px"
+                                :height "200px"
+                                :anchor "bottom right")
+            :stacking "fg"
+    (calendar)
+)
+(defwidget spacer [] " | ")
+(deflisten net :initial "" "~/.config/awesome/scripts/net.sh enp34s0 wlp39s0f3u1")
