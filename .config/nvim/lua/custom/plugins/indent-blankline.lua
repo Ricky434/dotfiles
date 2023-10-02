@@ -5,11 +5,15 @@ return {
     -- See `:help indent_blankline.txt`
     config = function()
         require('ibl').setup {
-            char = '┊',
-            show_trailing_blankline_indent = false,
+            indent = {
+                char = '┊',
+            },
+            whitespace = {
+                remove_blankline_trail = true,
+            },
             scope = {
                 show_start = false,
-            }
+            },
         }
     end,
 }
