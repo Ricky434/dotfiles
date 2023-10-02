@@ -11,6 +11,7 @@ vim.opt.expandtab = true
 
 vim.opt.autoindent = true
 vim.opt.smartindent = true
+vim.o.breakindent = true
 
 vim.opt.undofile = true
 
@@ -23,5 +24,7 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 
 vim.opt.updatetime = 50
+vim.o.timeoutlen = 300
 
-vim.g.mapleader = " "
+-- Default is menu,preview, have to try it out
+vim.o.completeopt = 'menuone,noselect'
