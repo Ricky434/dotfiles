@@ -74,7 +74,7 @@
 #memory,
 #mode,
 #network,
-#pulseaudio,
+#wireplumber,
 #temperature,
 #tray,
 #backlight,
@@ -159,7 +159,7 @@ window#waybar.fullscreen #window{
     color: #d65d0e;
 }
 
-#pulseaudio {
+#wireplumber {
 	background: @sound;
 	color: @black;
 }
