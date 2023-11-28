@@ -7,29 +7,29 @@ vim.g.maplocalleader = ' '
 -- Install lazy nvim package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
-    lazypath,
-  }
+    vim.fn.system {
+        'git',
+        'clone',
+        '--filter=blob:none',
+        'https://github.com/folke/lazy.nvim.git',
+        '--branch=stable', -- latest stable release
+        lazypath,
+    }
 end
 vim.opt.rtp:prepend(lazypath)
 
 -- Install plugins
 require('lazy').setup({
-  -- Git related plugins
-  'tpope/vim-fugitive',
-  -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
-  -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
-  --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  { import = 'custom.plugins' },
+    -- Git related plugins
+    'tpope/vim-fugitive',
+    -- Detect tabstop and shiftwidth automatically
+    'tpope/vim-sleuth',
+    -- Useful plugin to show you pending keybinds.
+    { 'folke/which-key.nvim',   opts = {} },
+    -- "gc" to comment visual regions/lines
+    { 'numToStr/Comment.nvim',  opts = {} },
+    --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
+    { import = 'custom.plugins' },
 }, {})
 
 require("keymaps")
@@ -39,11 +39,11 @@ require("settings")
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+    group = highlight_group,
+    pattern = '*',
 })
 
 -- Diagnostic keymaps
@@ -54,6 +54,12 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 
 -- [[ Configure LSP ]]
+-- Configure lsp borders
+local handlers = {
+    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+}
+
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
     -- Function that lets us more easily define mappings specific
@@ -70,6 +76,7 @@ local on_attach = function(_, bufnr)
     nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
     nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+    nmap('<leader>gr', vim.lsp.buf.references, '[G]oto [R]eferences (No Telescope)')
     nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
     nmap('gi', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
     nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
@@ -98,7 +105,7 @@ local servers = {
     -- pyright = {},
     -- rust_analyzer = {},
     -- tsserver = {},
-    html = { filetypes = { 'html', 'template', 'twig', 'hbs'} },
+    html = { filetypes = { 'html', 'template', 'twig', 'hbs' } },
 
     lua_ls = {
         Lua = {
@@ -129,6 +136,14 @@ mason_lspconfig.setup_handlers {
             on_attach = on_attach,
             settings = servers[server_name],
             filetypes = (servers[server_name] or {}).filetypes,
+            handlers = handlers,
         }
     end
+}
+
+-- Lsp not installed through Mason
+require('lspconfig')['hls'].setup {
+    cmd = { "haskell-language-server-wrapper", "--lsp" },
+    filetypes = { 'haskell', 'lhaskell', 'cabal' },
+    handlers = handlers,
 }
