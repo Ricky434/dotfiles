@@ -59,19 +59,19 @@ return {
                 end
 
                 ----- Funzione mia, usa autoformatting solo in lsp allowed da me
-                --local found = false
-                --local allowed_clients = { 'gopls' }
+                local found = false
+                local allowed_clients = { 'gopls' }
 
-                --for _,v in pairs(allowed_clients) do
-                --    if client.name == v then
-                --        found = true
-                --        break
-                --    end
-                --end
+                for _,v in pairs(allowed_clients) do
+                    if client.name == v then
+                        found = true
+                        break
+                    end
+                end
 
-                --if not found then
-                --    return
-                --end
+                if not found then
+                    return
+                end
                 -----
 
                 -- Create an autocmd that will run *before* we save the buffer.
