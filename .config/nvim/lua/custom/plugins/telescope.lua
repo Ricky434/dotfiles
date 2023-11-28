@@ -17,7 +17,7 @@ return {
             end,
         },
     },
-    config = function ()
+    config = function()
         require('telescope').setup {
             defaults = {
                 mappings = {
@@ -45,7 +45,9 @@ return {
             })
         end, { desc = '[/] Fuzzily search in current buffer' })
 
-        vim.keymap.set("n", "<leader>gs", builtin.git_status, { desc = 'Search [G]it [S]tatus' })
+        vim.keymap.set("n", "<leader>gs", function()
+            builtin.git_status({ layout_config = { preview_width = 0.625 } })
+        end, { desc = 'Search [G]it [S]tatus' })
         vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = 'Search [G]it [F]iles' })
         vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
