@@ -146,4 +146,5 @@ require('lspconfig')['hls'].setup {
     cmd = { "haskell-language-server-wrapper", "--lsp" },
     filetypes = { 'haskell', 'lhaskell', 'cabal' },
     handlers = handlers,
+    on_attach = on_attach,
 }
