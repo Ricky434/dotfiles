@@ -7,6 +7,11 @@ return {
     build = ':TSUpdate',
     config = function ()
         require('nvim-treesitter.configs').setup {
+            -- Added just to make linter stop complaining about missing required fields
+            ignore_install = {},
+            modules = {},
+            sync_install = false,
+
             -- Add languages to be installed here that you want installed for treesitter
             ensure_installed = { 'c', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim' },
 

@@ -113,7 +113,21 @@ local servers = {
             telemetry = { enable = false },
         },
     },
+
+    pylsp = {
+        pylsp = {
+            plugins = {
+                pylint = { args = { '--ignore=E501,E231', '-' }, enabled = false, debounce = 200 },
+                pycodestyle = {
+                    enabled = false,
+                    ignore = { 'E501', 'E231' },
+                    maxLineLength = 120
+                },
+            }
+        }
+    }
 }
+vim.lsp.set_log_level('debug')
 
 -- Setup neovim lua configuration
 require('neodev').setup()
