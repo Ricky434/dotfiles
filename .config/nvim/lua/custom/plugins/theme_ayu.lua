@@ -1,6 +1,6 @@
 return {
   'Shatur/neovim-ayu',
-  enabled = true,
+  enabled = false,
   priority = 1000,
   config = function()
     require('ayu').setup({
