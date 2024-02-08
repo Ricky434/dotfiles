@@ -155,10 +155,9 @@ mason_lspconfig.setup_handlers {
     end
 }
 
--- Lsp not installed through Mason
-require('lspconfig')['hls'].setup {
-    cmd = { "haskell-language-server-wrapper", "--lsp" },
-    filetypes = { 'haskell', 'lhaskell', 'cabal' },
-    handlers = handlers,
-    on_attach = on_attach,
+-- Set same keybinds for haskell-tools
+vim.g.haskell_tools = {
+    hls = {
+        on_attach = on_attach
+    }
 }
