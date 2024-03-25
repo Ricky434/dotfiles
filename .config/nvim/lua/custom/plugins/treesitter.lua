@@ -22,10 +22,14 @@ return {
             -- List of parsers to ignore installing (for "all")
             --ignore_install = { "javascript" },
 
-            highlight = { enable = true },
+            highlight = {
+                enable = true,
+                disable = { 'latex' }, -- Handled by vimTex
+            },
             indent = { enable = true },
             incremental_selection = {
                 enable = true,
+                disable = { 'latex' },
                 -- Keymaps for selecting text based on nodes
                 keymaps = {
                     init_selection = '<c-space>',
@@ -37,6 +41,7 @@ return {
             textobjects = {
                 select = {
                     enable = true,
+                    disable = { 'latex' },
                     lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
                     keymaps = {
                         -- You can use the capture groups defined in textobjects.scm
@@ -50,6 +55,7 @@ return {
                 },
                 move = {
                     enable = true,
+                    disable = { 'latex' },
                     set_jumps = true, -- whether to set jumps in the jumplist
                     goto_next_start = {
                         [']m'] = '@function.outer',
@@ -70,6 +76,7 @@ return {
                 },
                 swap = {
                     enable = true,
+                    disable = { 'latex' },
                     swap_next = {
                         ['<leader>a'] = '@parameter.inner',
                     },
