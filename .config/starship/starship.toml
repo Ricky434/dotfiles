@@ -55,7 +55,6 @@ deleted = '[✘](bold red)'
 
 
 [hostname]
-
 ssh_only = false
 format =  "[$hostname$ssh_symbol](bold blue)"
 trim_at = ""
@@ -67,10 +66,11 @@ format = "[$symbol$number]($style)"
 
 [status]
 style = "bold red"
-sigint_symbol = "ﳼ"
+sigint_symbol = "󰟾" #
 not_executable_symbol = ""
-not_found_symbol = ""
+not_found_symbol = "󰍉"
 signal_symbol = ""
+symbol = ""
 format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
 map_symbol = true
 disabled = false
