@@ -13,6 +13,19 @@ return {
         on_attach = function(bufnr)
             vim.keymap.set('n', '<leader>gp', require('gitsigns').preview_hunk,
                 { buffer = bufnr, desc = 'Preview git hunk' })
+            vim.keymap.set('n', '<leader>gb', require('gitsigns').blame_line,
+                { buffer = bufnr, desc = 'Blame line' })
+            vim.keymap.set('n', '<leader>gd', require('gitsigns').diffthis,
+                { buffer = bufnr, desc = 'Use nvim diff for current file' })
+            vim.keymap.set('n', '<leader>gl', require('gitsigns').toggle_linehl,
+                { buffer = bufnr, desc = 'Toggle line change highlight' })
+
+            vim.keymap.set('n', '<leader>gga', require('gitsigns').stage_hunk,
+                { buffer = bufnr, desc = 'Stage git hunk' })
+            vim.keymap.set('n', '<leader>ggu', require('gitsigns').undo_stage_hunk,
+                { buffer = bufnr, desc = 'Unstage git hunk' })
+            vim.keymap.set('n', '<leader>ggr', require('gitsigns').reset_hunk,
+                { buffer = bufnr, desc = 'Reset git hunk' })
 
             -- don't override the built-in and fugitive keymaps
             local gs = package.loaded.gitsigns
