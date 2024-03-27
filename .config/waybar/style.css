@@ -127,7 +127,7 @@
 
 /* Inactive (on unfocused output) */
 #workspaces button.visible {
-	color: @white;
+	color: @black;
 	background: @inactive;
 }
 
