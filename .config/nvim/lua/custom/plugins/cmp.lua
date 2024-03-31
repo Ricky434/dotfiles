@@ -11,6 +11,10 @@ return {
 
         -- Adds a number of user-friendly snippets
         'rafamadriz/friendly-snippets',
+
+        -- Source for buffer
+        -- Don't know if needed, with CTRL-P in insert mode you get those
+        'hrsh7th/cmp-buffer',
     },
     config = function()
         local cmp = require 'cmp'
@@ -57,6 +61,7 @@ return {
             sources = {
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
+                { name = 'buffer' },
             },
             window = {
                 completion = cmp.config.window.bordered(),

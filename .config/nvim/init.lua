@@ -108,23 +108,61 @@ local servers = {
     html = { filetypes = { 'html', 'template', 'twig', 'hbs' } },
 
     lua_ls = {
-        Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-        },
+        settings = {
+            Lua = {
+                workspace = { checkThirdParty = false },
+                telemetry = { enable = false },
+            },
+        }
     },
 
     pylsp = {
-        pylsp = {
-            plugins = {
-                pylint = { args = { '--ignore=E501,E231', '-' }, enabled = false, debounce = 200 },
-                pycodestyle = {
-                    enabled = false,
-                    ignore = { 'E501', 'E231' },
-                    maxLineLength = 120
-                },
+        settings = {
+            pylsp = {
+                plugins = {
+                    pylint = { args = { '--ignore=E501,E231', '-' }, enabled = false, debounce = 200 },
+                    pycodestyle = {
+                        enabled = false,
+                        ignore = { 'E501', 'E231' },
+                        maxLineLength = 120
+                    },
+                }
             }
         }
+    },
+
+    marksman = {
+        on_attach = function(_, bufnr)
+            -- Use pandoc to create pdf from markdown on write
+            vim.api.nvim_create_autocmd('BufWritePost', {
+                buffer = bufnr,
+                callback = function()
+                    local filepath = vim.api.nvim_buf_get_name(0)
+                    local cwd = filepath:match("(.*[\\/])")
+                    local filename = filepath:match(".*[\\/](.*)")
+
+                    -- extract file name without extension
+                    local occurrences = {}
+                    ---@type integer|nil
+                    local i = 0
+                    while true do
+                        i = string.find(filename, "%.", i + 1)
+                        if i == nil then break end
+                        table.insert(occurrences, i)
+                    end
+                    local fnameNoExt = string.sub(filename, 1, occurrences[#occurrences] - 1)
+
+                    local outpath = cwd .. fnameNoExt .. '.pdf'
+                    local handle = io.popen(
+                        'pandoc -o ' .. outpath .. ' ' .. filepath .. ' --number-sections --shift-heading-level-by=-1')
+                    if handle ~= nil then
+                        local result = handle:read("*a")
+                        handle:close()
+                        print(result)
+                    end
+                end,
+            })
+        end
     }
 }
 vim.lsp.set_log_level('debug')
@@ -147,8 +185,13 @@ mason_lspconfig.setup_handlers {
     function(server_name)
         require('lspconfig')[server_name].setup {
             capabilities = capabilities,
-            on_attach = on_attach,
-            settings = servers[server_name],
+            on_attach = function(client, bufnr)
+                on_attach(client, bufnr)
+                if servers[server_name].on_attach then
+                    servers[server_name].on_attach(client, bufnr)
+                end
+            end,
+            settings = (servers[server_name] or {}).settings,
             filetypes = (servers[server_name] or {}).filetypes,
             handlers = handlers,
         }
