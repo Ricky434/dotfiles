@@ -130,40 +130,6 @@ local servers = {
             }
         }
     },
-
-    marksman = {
-        on_attach = function(_, bufnr)
-            -- Use pandoc to create pdf from markdown on write
-            vim.api.nvim_create_autocmd('BufWritePost', {
-                buffer = bufnr,
-                callback = function()
-                    local filepath = vim.api.nvim_buf_get_name(0)
-                    local cwd = filepath:match("(.*[\\/])")
-                    local filename = filepath:match(".*[\\/](.*)")
-
-                    -- extract file name without extension
-                    local occurrences = {}
-                    ---@type integer|nil
-                    local i = 0
-                    while true do
-                        i = string.find(filename, "%.", i + 1)
-                        if i == nil then break end
-                        table.insert(occurrences, i)
-                    end
-                    local fnameNoExt = string.sub(filename, 1, occurrences[#occurrences] - 1)
-
-                    local outpath = cwd .. fnameNoExt .. '.pdf'
-                    local handle = io.popen(
-                        'pandoc -o ' .. outpath .. ' ' .. filepath .. ' --number-sections --shift-heading-level-by=-1')
-                    if handle ~= nil then
-                        local result = handle:read("*a")
-                        handle:close()
-                        print(result)
-                    end
-                end,
-            })
-        end
-    }
 }
 vim.lsp.set_log_level('debug')
 
@@ -187,7 +153,7 @@ mason_lspconfig.setup_handlers {
             capabilities = capabilities,
             on_attach = function(client, bufnr)
                 on_attach(client, bufnr)
-                if servers[server_name].on_attach then
+                if servers[server_name] ~= nil and servers[server_name].on_attach then
                     servers[server_name].on_attach(client, bufnr)
                 end
             end,
@@ -204,3 +170,42 @@ vim.g.haskell_tools = {
         on_attach = on_attach
     }
 }
+
+-- Configuration for markdown files
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "md", "markdown" },
+    group = vim.api.nvim_create_augroup('pandoc_on_save', { clear = true }),
+    callback = function(opts)
+        -- Use pandoc to create pdf from markdown on write
+        vim.api.nvim_create_autocmd('BufWritePost', {
+            buffer = opts.buf,
+            callback = function()
+                local filepath = vim.api.nvim_buf_get_name(0)
+                local cwd = filepath:match("(.*[\\/])")
+                local filename = filepath:match(".*[\\/](.*)")
+
+                -- extract file name without extension
+                local occurrences = {}
+                ---@type integer|nil
+                local i = 0
+                while true do
+                    i = string.find(filename, "%.", i + 1)
+                    if i == nil then break end
+                    table.insert(occurrences, i)
+                end
+                local fnameNoExt = string.sub(filename, 1, occurrences[#occurrences] - 1)
+
+                local outpath = cwd .. fnameNoExt .. '.pdf'
+                -- Runs asynchronously:
+                local obj = vim.system({
+                    'pandoc', '-o', outpath,
+                    '--number-sections',
+                    '--from', 'markdown+mark+lists_without_preceding_blankline+short_subsuperscripts',
+                    filepath
+                }, { text = true }):wait()
+
+                print(obj.stderr)
+            end,
+        })
+    end
+})
