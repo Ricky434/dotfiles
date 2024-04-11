@@ -35,6 +35,7 @@ require('lazy').setup({
 
 require("keymaps")
 require("settings")
+require("custom.other-configs")
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -171,42 +172,3 @@ vim.g.haskell_tools = {
         on_attach = on_attach
     }
 }
-
--- Configuration for markdown files
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "md", "markdown" },
-    group = vim.api.nvim_create_augroup('pandoc_on_save', { clear = true }),
-    callback = function(opts)
-        -- Use pandoc to create pdf from markdown on write
-        vim.api.nvim_create_autocmd('BufWritePost', {
-            buffer = opts.buf,
-            callback = function()
-                local filepath = vim.api.nvim_buf_get_name(0)
-                local cwd = filepath:match("(.*[\\/])")
-                local filename = filepath:match(".*[\\/](.*)")
-
-                -- extract file name without extension
-                local occurrences = {}
-                ---@type integer|nil
-                local i = 0
-                while true do
-                    i = string.find(filename, "%.", i + 1)
-                    if i == nil then break end
-                    table.insert(occurrences, i)
-                end
-                local fnameNoExt = string.sub(filename, 1, occurrences[#occurrences] - 1)
-
-                local outpath = cwd .. fnameNoExt .. '.pdf'
-                -- Runs asynchronously:
-                local obj = vim.system({
-                    'pandoc', '-o', outpath,
-                    '--number-sections',
-                    '--from', 'markdown+mark+lists_without_preceding_blankline+short_subsuperscripts',
-                    filepath
-                }, { text = true }):wait()
-
-                print(obj.stderr)
-            end,
-        })
-    end
-})
