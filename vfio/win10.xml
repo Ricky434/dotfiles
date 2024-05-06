@@ -1,3 +1,10 @@
+<!--
+WARNING: THIS IS AN AUTO-GENERATED FILE. CHANGES TO IT ARE LIKELY TO BE
+OVERWRITTEN AND LOST. Changes to this xml configuration should be made using:
+  virsh edit win11
+or other application using the libvirt API.
+-->
+
 <domain type='kvm'>
   <name>win11</name>
   <uuid>60865856-9c43-4091-aa8a-66b3cadd00b4</uuid>
@@ -10,6 +17,8 @@
   <currentMemory unit='KiB'>16777216</currentMemory>
   <memoryBacking>
     <hugepages/>
+    <source type='memfd'/>
+    <access mode='shared'/>
   </memoryBacking>
   <vcpu placement='static'>12</vcpu>
   <iothreads>1</iothreads>
@@ -61,7 +70,7 @@
     <ioapic driver='kvm'/>
   </features>
   <cpu mode='host-passthrough' check='none' migratable='on'>
-    <topology sockets='1' dies='1' cores='6' threads='2'/>
+    <topology sockets='1' dies='1' clusters='1' cores='6' threads='2'/>
     <feature policy='require' name='topoext'/>
     <feature policy='require' name='virt-ssbd'/>
   </cpu>
@@ -80,13 +89,6 @@
   </pm>
   <devices>
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
-    <disk type='file' device='cdrom'>
-      <driver name='qemu' type='raw'/>
-      <source file='/mnt/duck/Linux_Stuff/Iso/Win11_English_x64.iso'/>
-      <target dev='sdb' bus='sata'/>
-      <readonly/>
-      <address type='drive' controller='0' bus='0' target='0' unit='1'/>
-    </disk>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2' io='threads'/>
       <source file='/mnt/vulture/win11.qcow2'/>
@@ -105,6 +107,12 @@
       <source dev='/dev/sdb'/>
       <target dev='sdd' bus='scsi'/>
       <address type='drive' controller='0' bus='0' target='0' unit='2'/>
+    </disk>
+    <disk type='block' device='disk'>
+      <driver name='qemu' type='raw' cache='none' io='native' discard='unmap'/>
+      <source dev='/dev/sde'/>
+      <target dev='sde' bus='scsi'/>
+      <address type='drive' controller='0' bus='0' target='0' unit='4'/>
     </disk>
     <controller type='usb' index='0' model='qemu-xhci' ports='15'>
       <address type='pci' domain='0x0000' bus='0x03' slot='0x00' function='0x0'/>
@@ -199,6 +207,18 @@
     <controller type='virtio-serial' index='0'>
       <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
     </controller>
+    <filesystem type='mount' accessmode='passthrough'>
+      <driver type='virtiofs'/>
+      <source dir='/home/jelly/Music'/>
+      <target dir='Shared-Music'/>
+      <address type='pci' domain='0x0000' bus='0x08' slot='0x00' function='0x0'/>
+    </filesystem>
+    <filesystem type='mount' accessmode='passthrough'>
+      <driver type='virtiofs'/>
+      <source dir='/home/jelly/AltreCose/vfio-shared'/>
+      <target dir='Shared-Arch'/>
+      <address type='pci' domain='0x0000' bus='0x09' slot='0x00' function='0x0'/>
+    </filesystem>
     <interface type='bridge'>
       <mac address='52:54:00:97:ba:01'/>
       <source bridge='virbr0'/>
@@ -240,4 +260,3 @@
     </memballoon>
   </devices>
 </domain>
-

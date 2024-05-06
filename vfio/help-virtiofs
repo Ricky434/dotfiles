@@ -1,0 +1,6 @@
+Needed to share linux folder with vm
+
+1. Enable shared memory in memory settings (doesn't conflict with hugepages)
+2. Install WinFsp on windows
+3. Install virtiofs driver (should be already installed along with all other guest virtio drivers)
+4. Set virtiofs service as automatic start in windows
