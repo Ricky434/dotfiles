@@ -3,6 +3,7 @@
 vmName="win11"
 monitorName="DP-1"
 iconLocation="/home/jelly/.local/share/icons/Win11.png"
+failed="false"
 
 # Start vm
 virshRes=$(virsh --connect qemu:///system start $vmName 2>&1)
@@ -12,7 +13,7 @@ if [ $? -ne 0 ]; then
       -a "Win11" \
       -i $iconLocation \
       "Failed to start" "$virshRes"
-    exit 1
+    failed="true"
 fi
 
 # Show vm console
@@ -23,9 +24,13 @@ if [ $? -ne 0 ]; then
       -a "Win11" \
       -i $iconLocation \
       "Failed to open console" "$virtmRes"
-    exit 1
+    failed="true"
 fi
 
+# If all went well, disable monitor
+if [ "$failed" = "true" ]; then
+  exit 1
+fi
 hyprctl keyword monitor $monitorName,disable
 
 # Every 5 seconds check if vm is running, if it stopped reenable the monitor
