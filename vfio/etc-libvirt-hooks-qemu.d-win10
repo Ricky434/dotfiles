@@ -45,10 +45,6 @@ function activate_hugepages {
 }
 
 
-# Set windows and linux monitors (find them with xrandr -q | grep 'VGA\|HDMI\|DP\|LVDS')
-windows_monitor="HDMI-A-0"
-linux_monitor="DisplayPort-0"
-
 if [ "$command" = "prepare" ]; then
 	vfioIds=$(sed 's/.*vfio-pci ids=//' < /etc/modprobe.d/vfio.conf)
 	res=false
@@ -81,23 +77,10 @@ elif [ "$command" = "started" ]; then
     systemctl set-property --runtime -- user.slice AllowedCPUs=0,8,1,9
     systemctl set-property --runtime -- init.scope AllowedCPUs=0,8,1,9
 
-    # Turn off monitor that will be used for windows
-    # I have to specify the display, because xrandr wouldn't know what to use
-    # I have to do it as jelly because apparently with root it doesn't work
-    if [ "$XDG_SESSION_TYPE" = "x11" ]; then
-	# Currently not working, probably because the XDG_SESSION_VARIABLE is not set in the environment that executes this script
-	# Problem is I only can use this command when I'm not in wayland
-    	sudo -u jelly DISPLAY=:0 xrandr --output $windows_monitor --off
-    fi
 elif [ "$command" = "release" ]; then
     systemctl set-property --runtime -- system.slice AllowedCPUs=0-15
     systemctl set-property --runtime -- user.slice AllowedCPUs=0-15
     systemctl set-property --runtime -- init.scope AllowedCPUs=0-15
-
-    # Turn on monitor that was used for windows
-    if [ "$XDG_SESSION_TYPE" = "x11" ]; then
-    	sudo -u jelly DISPLAY=:0 xrandr --output $windows_monitor --auto --left-of $linux_monitor
-    fi
 
     # Deallocate hugepages
     echo 0 > /proc/sys/vm/nr_hugepages

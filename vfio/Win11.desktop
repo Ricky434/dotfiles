@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/jelly/.local/bin/startWin11.sh
+Icon=/home/jelly/.local/share/icons/Win11.png
+Name=Win11
+StartupNotify=true
