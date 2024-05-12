@@ -27,10 +27,17 @@
 		"tray",
 		"clock#date",
 		"custom/arrow1",
-		"clock#time"
+		"clock#time",
+		"custom/arrow11",
+		"custom/power"
 	],
 
 	// Modules
+	"custom/power": {
+		"format": "⏻",
+		"on-click": "powermenu",
+		"tooltip": false
+	},
 
 	"battery": {
 		"interval": 10,
@@ -111,7 +118,8 @@
 		"format": "{}",
 		"max-length": 100,
 		"tooltip": false,
-        //"separate-outputs": true
+		"separate-outputs": true,
+		"on-click": "hyprctl dispatch layoutmsg cyclenext",
 	},
 
 	"hyprland/workspaces": {
@@ -126,9 +134,9 @@
 		"format-muted": "",
 		"format-icons": ["", ""],
 		"scroll-step": 1,
-        "on-click": "pulseaudio-control --node-blacklist 'alsa_output.pci-0000_25_00.1.hdmi-stereo-extra3' next-node",
+		"on-click": "pulseaudio-control --node-blacklist 'alsa_output.pci-0000_25_00.1.hdmi-stereo-extra3' next-node",
 		"on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-click-right": "pavucontrol",
+		"on-click-right": "pavucontrol",
 		"tooltip": "{node_name}"
 	},
 
@@ -200,7 +208,12 @@
 	"custom/arrow10": {
 		"format": "",
 		"tooltip": false
-	}
+	},
+
+	"custom/arrow11": {
+		"format": "",
+		"tooltip": false
+	},
 }
 
 // vi:ft=jsonc

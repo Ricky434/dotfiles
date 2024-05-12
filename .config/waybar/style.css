@@ -208,6 +208,12 @@ window#waybar.fullscreen #window{
 	color: @black;
 }
 
+#custom-power {
+	font-size: 11pt;
+	background: @temp;
+	color: @black;
+}
+
 #custom-arrow1 {
 	font-size: 11pt;
 	color: @time;
@@ -267,6 +273,12 @@ window#waybar.fullscreen #window{
 	font-size: 11pt;
 	color: @unfocused;
 	background: transparent;
+}
+
+#custom-arrow11 {
+	font-size: 11pt;
+	color: @temp;
+	background: @time;
 }
 
 /* Restore most of the Adwaita teme for tray menus */
