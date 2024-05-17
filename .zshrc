@@ -56,7 +56,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # ======= ALIASES
 #
 alias ls='ls --color=auto'
-alias la='exa -lahg'
+alias la='eza -lahg'
 #alias find='fd'
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
 alias cal='cal -m'
@@ -68,6 +68,7 @@ setopt autopushd #serve per popd (tipo cd - ma meglio)
 setopt completeinword
 setopt interactivecomments #serve per poter mettere i commenti nei comandi
 setopt longlistjobs
+setopt histignorespace
 
 # ======= SYNTAX HIGHLIGHTING
 #

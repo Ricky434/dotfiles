@@ -11,10 +11,12 @@ BWHITE='\e[1;34m'
 
 # Dot
 DOT=" ${BBLUE}*${NC}"
+CDOT=" ${BCYAN}*${NC}"
 
 # List
 echo "\n ${BMAGENTA}TODO${NC}:
-${DOT} Xmonad workspace tags, click logout
-${DOT} dwm?
-${DOT} Picom experimental
+${DOT} Nulla, per ora...
 "
+#${DOT} Nulla, per ora...
+#echo "${BRED}VOGLIO${NC}:
+#"
