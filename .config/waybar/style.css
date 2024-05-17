@@ -209,9 +209,11 @@ window#waybar.fullscreen #window{
 }
 
 #custom-power {
+	padding-left: 5;
+	padding-right: 7pt;
 	font-size: 11pt;
-	background: @temp;
-	color: @black;
+	background: @black;
+	color: @white;
 }
 
 #custom-arrow1 {
@@ -277,7 +279,7 @@ window#waybar.fullscreen #window{
 
 #custom-arrow11 {
 	font-size: 11pt;
-	color: @temp;
+	color: @black;
 	background: @time;
 }
 

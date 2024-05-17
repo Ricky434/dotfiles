@@ -10,3 +10,6 @@ line_wrap=word_char
 insensitive=true
 term=kitty
 layer=overlay
+single_click=false
+sort_order=default
+key_expand=Ctrl-Return

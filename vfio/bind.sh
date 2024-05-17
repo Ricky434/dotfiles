@@ -1,7 +1,7 @@
 #!/bin/sh
 #ID della gpu (video e audio)
-ID1="0000:29:00.0"
-ID2="0000:29:00.1"
+ID1="0000:26:00.0"
+ID2="0000:26:00.1"
 
 nvidia() {
 	echo "Unbind GPU from vfio driver"
