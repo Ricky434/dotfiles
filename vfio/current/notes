@@ -1,0 +1,6 @@
+# Make vfio take over the nvidia gpu before nvidia drivers
+1. Add vfio modules in mkinitcpio before nvidia as wiki says
+2. Set ids of gpu that will be claimed by vfio in modprobe.d/vfio.conf
+3. Rebuild initframs
+
+No need to blacklist nvidia modules on boot

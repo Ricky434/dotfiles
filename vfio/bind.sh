@@ -1,26 +1,32 @@
-#!/bin/sh
-#ID della gpu (video e audio)
-ID1="0000:26:00.0"
-ID2="0000:26:00.1"
+#!/bin/bash
+# This script unbinds the nvidia gpu to make it usable by the vm
+# It just loads/unloads the related drivers
+# If both gpus are nvidia or amd it won't work
+VIDEO_ID="0000:26:00.0"
+AUDIO_ID="0000:26:00.1"
 
-nvidia() {
-	echo "Unbind GPU from vfio driver"
-	sudo sh -c "echo -n $ID1 > /sys/bus/pci/drivers/vfio-pci/unbind" || echo "Failed to unbind $ID1"
-	sudo sh -c "echo -n $ID2 > /sys/bus/pci/drivers/vfio-pci/unbind" || echo "Failed to unbind $ID2"
-	echo "Bind GPU to nvidia driver"
-	sudo sh -c "echo -n $ID1 > /sys/bus/pci/drivers/nvidia/bind" || echo "Failed to bind $ID1"
-	echo "Bind GPU audio to snd_hda_intel driver"
-	sudo sh -c "echo -n $ID2 > /sys/bus/pci/drivers/snd_hda_intel/bind" || echo "Failed to bind $ID2"
+# nvidia_drm always looks like is in use
+# only way around it is to kill the graphical session
+# even if it is not using it
+vfio() {
+    sudo modprobe -r nvidia_drm
+    sudo modprobe -r nvidia_modeset
+    sudo modprobe -r nvidia_uvm
+    sudo modprobe -r nvidia
+    sudo sh -c "echo -n $AUDIO_ID > /sys/bus/pci/drivers/snd_hda_intel/unbind" || echo "Failed to unbind $AUDIO_ID"
+
+    sudo modprobe vfio-pci
 }
 
-vfio() {
-	echo "Unbind GPU from nvidia driver"
-	sudo sh -c "echo -n $ID1 > /sys/bus/pci/drivers/nvidia/unbind" || echo "Failed to unbind $ID1"
-	echo "Bind GPU audio to snd_hda_intel driver"
-	sudo sh -c "echo -n $ID2 > /sys/bus/pci/drivers/snd_hda_intel/unbind" || echo "Failed to unbind $ID2"
-	echo "Bind GPU to vfio driver"
-	sudo sh -c "echo -n $ID1 > /sys/bus/pci/drivers/vfio-pci/bind" || echo "Failed to bind $ID1"
-	sudo sh -c "echo -n $ID2 > /sys/bus/pci/drivers/vfio-pci/bind" || echo "Failed to bind $ID2"
+nvidia() {
+    sudo modprobe -r vfio-pci
+
+    sudo modprobe nvidia_drm
+    sudo modprobe nvidia_modeset
+    sudo modprobe nvidia_uvm
+    sudo modprobe nvidia
+
+    sudo sh -c "echo -n $AUDIO_ID > /sys/bus/pci/drivers/snd_hda_intel/bind" || echo "Failed to bind $AUDIO_ID"
 }
 
 if [[ "$1" == "nvidia" ]]; then
