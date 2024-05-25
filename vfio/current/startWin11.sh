@@ -33,15 +33,13 @@ if [ "$failed" = "true" ]; then
 fi
 hyprctl keyword monitor $monitorName,disable
 
-# Every 5 seconds check if vm is running, if it stopped reenable the monitor
-running="true"
-while [ "$running" = "true" ]; do
-  sleep 5;
+# Listen for shutdown event, when it happens reenable the monitor
+result=$(virsh --connect qemu:///system qemu-monitor-event win11 --event SHUTDOWN --pretty --timestamp)
 
-  shutoffVms=$(virsh --connect qemu:///system list --state-shutoff --name)
-  echo $shutoffVms
-  if echo $shutoffVms | grep -q $vmName; then
-    hyprctl keyword monitor $monitorName,1920x1080,0x0,1,bitdepth,10;
-    running="false";
-  fi;
-done
+notify-send \
+  -t 3 \
+  -a "Win11" \
+  -i $iconLocation \
+  "Win11 shut down" "$result"
+
+hyprctl keyword monitor $monitorName,1920x1080,0x0,1,bitdepth,10;
