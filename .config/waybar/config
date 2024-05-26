@@ -1,6 +1,7 @@
 {
 	"layer": "top",
 	"position": "bottom",
+	"fixed-center": false,
 
 	"modules-left": [
 		"hyprland/workspaces",
@@ -72,7 +73,7 @@
 		"format": "{:%e %b %Y}",
 		"tooltip": true,
 		"tooltip-format": "<tt><small>{calendar}</small></tt>",
-        "on-click": "kitty -e calcurse"
+		"on-click": "kitty -e calcurse"
 	},
 
 	"cpu": {
@@ -88,11 +89,11 @@
 
 	"hyprland/language": {
 		"format": " {}",
-		"min-length": 5,
+		"min-length": 4,
 		"on-click": "hyprctl switchxkblayout keychron-keychron-q1 next",
-		"tooltip": false,
-        "format-en": "us",
-        "format-en-intl": "intl"
+		"format-en": "us",
+		"format-en-intl": "intl",
+		"keyboard-name": "keychron-keychron-q1",
 	},
 
 	"memory": {
@@ -107,7 +108,7 @@
 
 	"network": {
 		"interval": 5,
-		"format-wifi": " {ifname}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+		"format-wifi": "󰖩 {ifname}  {bandwidthUpBytes}  {bandwidthDownBytes}",
 		"format-ethernet": " {ifname}  {bandwidthUpBytes}  {bandwidthDownBytes}",
 		"format-disconnected": "No connection",
 		"format-alt": " {ipaddr}/{cidr}",
@@ -123,9 +124,9 @@
 	},
 
 	"hyprland/workspaces": {
-     "on-scroll-up": "hyprctl dispatch workspace m+1",
-     "on-scroll-down": "hyprctl dispatch workspace m-1",
-     "format": "{name}"
+		"on-scroll-up": "hyprctl dispatch workspace m+1",
+		"on-scroll-down": "hyprctl dispatch workspace m-1",
+		"format": "{name}"
 	},
 
 	"wireplumber": {
@@ -141,7 +142,7 @@
 	},
 
 	"temperature": {
-        "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
+		"hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
 		"critical-threshold": 90,
 		"interval": 5,
 		"format": "{icon} {temperatureC}°",
@@ -156,7 +157,7 @@
 	},
 
 	"tray": {
-		"icon-size": 18
+		"icon-size": 18,
 		//"spacing": 10
 	},
 

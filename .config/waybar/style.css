@@ -196,6 +196,7 @@ window#waybar.fullscreen #window{
 
 #tray {
 	background: @date;
+	padding-right: 0;
 }
 
 #clock.date {
