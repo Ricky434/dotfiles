@@ -49,6 +49,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Diagnostic keymaps
+vim.diagnostic.config({float = { border = "rounded" }})
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
@@ -133,7 +134,7 @@ local servers = {
         }
     },
 }
-vim.lsp.set_log_level('debug')
+vim.lsp.set_log_level('off')
 
 -- Setup neovim lua configuration
 require('neodev').setup()
