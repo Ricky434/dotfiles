@@ -23,6 +23,7 @@ return {
         luasnip.config.setup {}
 
         cmp.setup {
+            preselect = cmp.PreselectMode.None,
             snippet = {
                 expand = function(args)
                     luasnip.lsp_expand(args.body)
@@ -44,7 +45,6 @@ return {
                         end
                     end,
                     s = cmp.mapping.confirm({ select = true }),
-                    c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
                 }),
                 ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
@@ -69,6 +69,7 @@ return {
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
                 { name = 'buffer' },
+                { name = 'neorg' },
             },
             window = {
                 completion = cmp.config.window.bordered(),

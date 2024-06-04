@@ -3,8 +3,7 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = { "md", "markdown" },
     group = vim.api.nvim_create_augroup('pandoc_on_save', { clear = true }),
     callback = function(opts)
-
-        local compile_is_enabled = true
+        local compile_is_enabled = false
         vim.api.nvim_create_user_command('PandocOnWriteToggle', function()
             compile_is_enabled = not compile_is_enabled
             print('Setting autocompiling to pdf to: ' .. tostring(compile_is_enabled))
