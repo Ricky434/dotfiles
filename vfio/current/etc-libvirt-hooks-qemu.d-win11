@@ -84,4 +84,7 @@ elif [ "$command" = "release" ]; then
 
     # Deallocate hugepages
     echo 0 > /proc/sys/vm/nr_hugepages
+
+    # Remount drives by looking at fstab
+    mount -a
 fi
