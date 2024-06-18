@@ -232,10 +232,23 @@ or other application using the libvirt API.
     <tpm model='tpm-crb'>
       <backend type='emulator' version='2.0'/>
     </tpm>
+    <graphics type='spice' autoport='yes'>
+      <listen type='address'/>
+    </graphics>
     <sound model='ich9'>
+      <audio id='1'/>
       <address type='pci' domain='0x0000' bus='0x10' slot='0x01' function='0x0'/>
     </sound>
+    <sound model='ich9'>
+      <codec type='output'/>
+      <audio id='2'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x1b' function='0x0'/>
+    </sound>
     <audio id='1' type='pulseaudio' serverName='/run/user/1000/pulse/native'/>
+    <audio id='2' type='spice'/>
+    <video>
+      <model type='none'/>
+    </video>
     <hostdev mode='subsystem' type='pci' managed='yes'>
       <source>
         <address domain='0x0000' bus='0x26' slot='0x00' function='0x0'/>
@@ -247,5 +260,10 @@ or other application using the libvirt API.
     <memballoon model='virtio'>
       <address type='pci' domain='0x0000' bus='0x05' slot='0x00' function='0x0'/>
     </memballoon>
+    <shmem name='looking-glass'>
+      <model type='ivshmem-plain'/>
+      <size unit='M'>32</size>
+      <address type='pci' domain='0x0000' bus='0x10' slot='0x02' function='0x0'/>
+    </shmem>
   </devices>
 </domain>
