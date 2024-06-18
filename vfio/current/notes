@@ -4,3 +4,13 @@
 3. Rebuild initframs
 
 No need to blacklist nvidia modules on boot
+
+---
+If virtiofs (shared filesystem) seems not to be working, even after installing all drivers
+it could be that you have to enable the VirtIO-FS windows service
+
+If network is not working, it could be blocked by your firewall. To try set FORWARD chain to accept
+
+Useful kernel parameters:
+pci=noats # do not use pcie ats (and IOMMU device IOTLB) (dont know if I should set it or not)
+pcie_aspm=off # disable pcie active state power management. Could work to prevent random vm crashes (I have to test it)
