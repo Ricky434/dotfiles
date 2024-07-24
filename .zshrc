@@ -106,6 +106,7 @@ preexec() {
 }
 
 # This way each time a command is executed the window title is set as that command, and when the command ends (the next prompt is drawn) the window title is set as the current directory
+#
 # =======
 
 # ======= USEFUL FUNCTIONS
