@@ -43,3 +43,4 @@ notify-send \
   "Win11 shut down" "$result"
 
 hyprctl keyword monitor $monitorName,1920x1080,0x0,1,bitdepth,10;
+hyprctl dispatch closewindow title:"$vmName on QEMU/KVM"
