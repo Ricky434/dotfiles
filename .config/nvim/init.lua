@@ -25,8 +25,6 @@ require('lazy').setup({
     'tpope/vim-fugitive',
     -- Detect tabstop and shiftwidth automatically
     'tpope/vim-sleuth',
-    -- Useful plugin to show you pending keybinds.
-    { 'folke/which-key.nvim',   opts = {} },
     -- "gc" to comment visual regions/lines
     { 'numToStr/Comment.nvim',  opts = {} },
     --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
