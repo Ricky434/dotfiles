@@ -26,5 +26,14 @@ vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 50
 vim.o.timeoutlen = 300
 
+vim.opt.colorcolumn = "80"
 -- Default is menu,preview, have to try it out
 vim.o.completeopt = 'menuone,noselect'
+
+-- Folds
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldcolumn = "1"
+vim.opt.foldtext = ""
+vim.opt.foldlevel = 99
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]

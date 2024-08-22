@@ -4,7 +4,6 @@ return {
     enabled = true,
     priority = 1000,
     config = function()
-        vim.cmd.colorscheme 'onedark'
         require('onedark').setup {
             style = 'darker',
             ending_tildes = true, -- Show the end-of-buffer tildes. By default they are hidden
@@ -16,6 +15,8 @@ return {
                 ["@repeat"] = { fg = '$red' },
                 ["@keyword"] = { fg = '$red' },
                 ["@punctuation.bracket"] = { fg = '#abb2bf' },
+                ModeMsg = { fg = '$fg' },
+                FoldColumn = {fg = '$fg', bg = '$transparent' and '$none' or '$bg'},
             },
         }
         require('onedark').load()
