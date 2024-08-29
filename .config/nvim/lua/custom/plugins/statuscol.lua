@@ -8,12 +8,12 @@ return {
       -- Default segments (fold -> sign -> line number + separator), explained below
       segments = {
         { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" }, -- Fold column without numbers
-        { text = { "%s" },                  click = "v:lua.ScSa" }, -- sign
         {
-          text = { builtin.lnumfunc, " " },
+          text = { builtin.lnumfunc },
           condition = { true, builtin.not_empty },
           click = "v:lua.ScLa",
-        } -- line number + separator
+        },                                                               -- line number + separator
+        { text = { " ", "%s"},       click = "v:lua.ScSa" },       -- sign
       },
     })
   end
