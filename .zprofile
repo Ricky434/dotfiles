@@ -1,6 +1,8 @@
 # ======= PATH
 #
 export PATH="$HOME/.local/bin:$PATH"
+# Scripts for my vm
+export PATH="$HOME/.local/bin/vfio:$PATH"
 export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
 export PATH="$XDG_DATA_HOME/go/bin/:$PATH"
 # This is for flutter-firebase
