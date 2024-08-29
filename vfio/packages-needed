@@ -1,6 +1,0 @@
-qemu-desktop libvirt virt-manager qemu-virtfsd dnsmasq iptables-nft edk2-ovmf dmidecode swtpm
-
-enable libvirtd.service
-add user to group libvirtd, insert user in qemu.conf
-
-For some reason it said it didn't find some thing related to edk2-ovmf. Luckily I resolved the problem by copying the file in /var/lib/libvirt/qemu/nvram from my old installation of linux (where everything was working) to the new one (which was missing it)
