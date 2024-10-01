@@ -33,10 +33,10 @@ vim.o.completeopt = 'menuone,noselect'
 -- Folds
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldcolumn = "1"
+vim.opt.foldcolumn = "auto:4"
 vim.opt.foldtext = ""
 vim.opt.foldlevel = 99
-vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+vim.o.fillchars = [[fold: ,foldopen:┬,foldclose:─,foldsep:┆]]
 
 
 -- Execute .nvim.lua/.nvimrc/.exrc file in project directory

@@ -16,7 +16,9 @@ return {
                 ["@keyword"] = { fg = '$red' },
                 ["@punctuation.bracket"] = { fg = '#abb2bf' },
                 ModeMsg = { fg = '$fg' },
-                FoldColumn = {fg = '$fg', bg = '$transparent' and '$none' or '$bg'},
+                FoldColumn = {fg = '$light_grey', bg = '$transparent' and '$none' or '$bg'},
+                TroubleNormal = { bg = '$bg0' },
+                TroubleNormalNC = { bg = '$bg0' },
             },
         }
         require('onedark').load()
