@@ -36,7 +36,7 @@ export GHCUP_USE_XDG_DIRS=true
 # =======
 
 # ======= OTHER
-export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_QPA_PLATFORMTHEME="qt5ct:qt6ct"
 export MAKEFLAGS="-j$(nproc)"
 
 # ======= Start Hyprland if it's not already running
