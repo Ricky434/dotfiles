@@ -118,13 +118,12 @@ myStartupHook = do
           spawnOnce "xinput --set-prop \"Logitech G203 Prodigy Gaming Mouse\" 'libinput Accel Profile Enabled' 0, 1 &"
           spawnOnce "xset s off; xset dpms 0 0 3600 &"
           spawnOnce "killall redshift; redshift-gtk -t 6500:4550 &"
-          spawnOnce "/usr/lib/polkit-kde-authentication-agent-1 &"
+          spawnOnce "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 &"
           -- spawnOnce "polybar -q bottom -c $HOME/.config/polybar/current/config.ini &"
           spawn ("sleep 2 && trayer --edge bottom --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --iconspacing 3 " ++ colorTrayer ++ " --height 22")
           spawnOnce "nm-applet --indicator &"
           spawnOnce "pasystray"
           setWMName "XMONAD"
-          spawnOnce "emacs --daemon"
 
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
@@ -280,8 +279,9 @@ myKeys =
         -- (RISCHIOSO) , ("M-S-a", killAll)   -- Kill all windows on current workspace
 
     -- KB_GROUP Workspaces
-        , ("M-.", moveTo Next nonNSP)  -- Switch focus to next monitor
-        , ("M-,", moveTo Prev nonNSP)  -- Switch focus to prev monitor
+        , ("M-o", nextScreen)  -- Switch focus to next ws
+        , ("M-.", moveTo Next nonNSP)  -- Switch focus to next ws
+        , ("M-,", moveTo Prev nonNSP)  -- Switch focus to prev ws
         , ("M-S-.", shiftTo Next nonNSP >> moveTo Next nonNSP)       -- Shifts focused window to next ws
         , ("M-S-,", shiftTo Prev nonNSP >> moveTo Prev nonNSP)  -- Shifts focused window to prev ws
 
@@ -365,6 +365,7 @@ main :: IO ()
 main = do
     -- Xmobar
     xmproc0 <- spawnPipe ("xmobar -x 0 $HOME/.config/xmobar/xmobarrc")
+    xmproc1 <- spawnPipe ("xmobar -x 1 $HOME/.config/xmobar/xmobarrc")
     threadDelay 100000
     -- the xmonad, ya know...what the WM is named after!
     xmonad $ ewmh $ def
@@ -385,7 +386,7 @@ main = do
         , focusedBorderColor = myFocusColor
         , logHook = dynamicLogWithPP $ filterOutWsPP [scratchpadWorkspaceTag] $ xmobarPP
               -- XMOBAR SETTINGS
-              { ppOutput = \x -> hPutStrLn xmproc0 x   -- xmobar on monitor 1
+              { ppOutput = \x -> hPutStrLn xmproc0 x >> hPutStrLn xmproc1 x  -- xmobar on monitor 1
                 -- Current workspace
               , ppCurrent = xmobarColor color06 "" . wrap
                             ("<box type=Bottom width=2 mb=2 color=" ++ color06 ++ ">") "</box>"
