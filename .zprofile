@@ -36,7 +36,8 @@ export GHCUP_USE_XDG_DIRS=true
 # =======
 
 # ======= OTHER
-export QT_QPA_PLATFORMTHEME="qt5ct:qt6ct"
+export QT_QPA_PLATFORMTHEME="qt5ct" # Works for both qt5ct and qt6ct. For when I'm not in kde
+#export QT_QPA_PLATFORMTHEME="KDE"
 export MAKEFLAGS="-j$(nproc)"
 
 # ======= Start Hyprland if it's not already running
@@ -44,3 +45,6 @@ export MAKEFLAGS="-j$(nproc)"
 if [[ -z $(pgrep Hyprland) ]]; then
     Hyprland
 fi
+
+# Start Plasma without session manager
+#/usr/lib/plasma-dbus-run-session-if-needed /usr/bin/startplasma-wayland
