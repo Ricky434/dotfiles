@@ -149,6 +149,39 @@
 	color: @white;
 }
 
+/* ===== Same as workspaces, but for riverwm ===== */
+#tags button {
+	/*font-weight: bold;*/
+	padding-left: 2pt;
+	padding-right: 2pt;
+	color: @white;
+	background: @unfocused;
+}
+
+/* Inactive (on unfocused output) */
+#tags button.occupied {
+	color: @black;
+	background: @yellow;
+}
+
+/* Active (on focused output) */
+#tags button.focused {
+	color: @black;
+	background: @focused;
+}
+
+/* Contains an urgent window */
+#tags button.urgent {
+	color: @black;
+	background: @red;
+}
+
+/* Style when cursor is on the button */
+#tags button:hover {
+	background: @black;
+	color: @white;
+}
+
 #window {
 	margin-right: 35pt;
 	margin-left: 10pt;
@@ -156,7 +189,7 @@
 
 window#waybar.fullscreen #window{
     font-weight: bolder;
-    color: #d65d0e;
+    color: #c490d1;
 }
 
 #wireplumber {

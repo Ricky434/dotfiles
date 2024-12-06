@@ -1,7 +1,7 @@
 configuration {
-	modi: "drun,run";
-	display-drun : " DRun";
-	display-run : " Run";
+	modi: "drun,run,emoji";
+	display-drun : "󰀻 DRun";
+	display-run : "  Run";
 	display-filebrowser: " FileBrowser";
 	matching: "prefix";
     	drun-match-fields: "name,generic";

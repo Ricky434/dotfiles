@@ -2,11 +2,14 @@
 	"layer": "top",
 	"position": "bottom",
 	"fixed-center": false,
+	"reload_style_on_change": true,
 
 	"modules-left": [
 		"hyprland/workspaces",
+		"river/tags",
 		"custom/arrow10",
-		"hyprland/window"
+		"hyprland/window",
+		"river/window"
 	],
 
 	"modules-right": [
@@ -65,7 +68,8 @@
 	"clock#time": {
 		"interval": 10,
 		"format": "{:%H:%M}",
-		"tooltip": false
+		"tooltip": false,
+		"timezone": "Europe/"
 	},
 
 	"clock#date": {
