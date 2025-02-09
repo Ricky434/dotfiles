@@ -69,7 +69,7 @@
 		"interval": 10,
 		"format": "{:%H:%M}",
 		"tooltip": false,
-		"timezone": "Europe/"
+		"timezone": "Europe/Rome"
 	},
 
 	"clock#date": {

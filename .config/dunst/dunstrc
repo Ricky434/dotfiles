@@ -26,14 +26,14 @@
     # constant width of 300
     width = 300
 
-    # The maximum height of a single notification, excluding the frame.
-    height = 500
+    # dynamic height from 0 to 500
+    height = (0, 500)
 
     # Position the notification in the top right corner
     origin = top-right
 
     # Offset from the origin
-    offset = 5x2
+    offset = (5, 2)
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
@@ -339,7 +339,7 @@
     background = "#212531"
     foreground = "#D6D3D9"
     frame_color = "#C490D1"
-    timeout = 10
+    timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
 
@@ -347,7 +347,7 @@
     background = "#212531"
     foreground = "#D6D3D9"
     frame_color = "#C490D1"
-    timeout = 10
+    timeout = 5
     override_pause_level = 30
     # Icon for notifications with normal urgency, uncomment to enable
     #default_icon = /path/to/icon

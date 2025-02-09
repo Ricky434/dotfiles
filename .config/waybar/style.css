@@ -11,7 +11,6 @@
 /* Styles */
 
 /* Colors (gruvbox) */
-@define-color black	#282c34;
 @define-color red	#e06c75;
 @define-color green	#98c379;
 @define-color yellow	#e5c07b;
@@ -19,6 +18,7 @@
 @define-color purple	#c678dd;
 @define-color aqua	#56b6c2;
 @define-color gray	#abb2bf;
+
 @define-color brred	#e06c75;
 @define-color brgreen	#98c379;
 @define-color bryellow	#e5c07b;
@@ -26,6 +26,8 @@
 @define-color brpurple	#c678dd;
 @define-color braqua	#56b6c2;
 @define-color brgray	#abb2bf;
+
+@define-color black	#282c34;
 @define-color white	#d8dee9;
 @define-color bg2	#393f4a;
 

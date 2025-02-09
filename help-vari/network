@@ -1,0 +1,7 @@
+If you want to use wifi instead of ethernet while having both connected you have to change their route metrics
+
+One way to do it is through NetworkManager (another is through ip route probably)
+Don't use the gui, it's stupid. Use nmcli connection modify and set ipv4/ipv6.route-metric
+
+---
+Se la connessione droppa ogni qualche secondo molto probabilmente e' perche il segnale fa schifo (probabilmente stai usando 5Ghz)
