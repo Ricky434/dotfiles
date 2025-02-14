@@ -1,3 +1,9 @@
+# ======= XDG, LOCATIONS
+#
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+
 # ======= PATH
 #
 export PATH="$HOME/.local/bin:$PATH"
@@ -7,17 +13,13 @@ export PATH="$XDG_DATA_HOME/cargo/bin:$PATH"
 export PATH="$XDG_DATA_HOME/go/bin/:$PATH"
 # This is for flutter-firebase
 export PATH="$HOME/.pub-cache/bin:$PATH"
+# Composer (php)
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
 # ======= DEFAULT APPS
 #
 export BROWSER=/usr/bin/firefox
 export EDITOR=nvim
-
-# ======= XDG, LOCATIONS
-#
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CACHE_HOME="$HOME/.cache"
 
 # Set XDG compliant locations for various programs
 export CALCHISTFILE="$XDG_CACHE_HOME"/calc_history
@@ -43,8 +45,9 @@ export MAKEFLAGS="-j$(nproc)"
 # ======= Start Hyprland if it's not already running
 #
 if [[ -z $(pgrep Hyprland) ]]; then
+    #need to disable /usr/share/dbus-1/services/org.kde.plasma.Notifications.service otherwise dunst won't be used
     Hyprland
 fi
 
 # Start Plasma without session manager
-#/usr/lib/plasma-dbus-run-session-if-needed /usr/bin/startplasma-wayland
+#export QT_QPA_PLATFORMTHEME="KDE"; export XDG_SESSION_DESKTOP="KDE"; /usr/lib/plasma-dbus-run-session-if-needed /usr/bin/startplasma-wayland
