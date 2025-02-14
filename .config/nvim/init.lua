@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Diagnostic keymaps
-vim.diagnostic.config({float = { border = "rounded" }})
+vim.diagnostic.config({ float = { border = "rounded" } })
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
@@ -77,6 +77,7 @@ local on_attach = function(_, bufnr)
     nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
     nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+    nmap('<leader>gt', '<cmd>tab split | lua vim.lsp.buf.definition()<CR>', '[G]oto definition in new [T]ab')
     nmap('<leader>gr', vim.lsp.buf.references, '[G]oto [R]eferences (No Telescope)')
     nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
     nmap('gi', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
@@ -132,7 +133,7 @@ local servers = {
         }
     },
 }
-vim.lsp.set_log_level('off')
+vim.lsp.set_log_level('warn')
 
 -- Setup neovim lua configuration
 require('neodev').setup()
@@ -146,6 +147,16 @@ local mason_lspconfig = require 'mason-lspconfig'
 
 mason_lspconfig.setup {
     ensure_installed = vim.tbl_keys(servers),
+
+    -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
+    -- This setting has no relation with the `ensure_installed` setting.
+    -- Can either be:
+    --   - false: Servers are not automatically installed.
+    --   - true: All servers set up via lspconfig are automatically installed.
+    --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
+    --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
+    ---@type boolean
+    automatic_installation = false,
 }
 
 mason_lspconfig.setup_handlers {

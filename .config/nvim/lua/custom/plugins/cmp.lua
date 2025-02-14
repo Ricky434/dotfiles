@@ -70,6 +70,7 @@ return {
                 { name = 'luasnip' },
                 { name = 'buffer' },
                 { name = 'neorg' },
+                { name = 'vimtex' },
             },
             window = {
                 completion = cmp.config.window.bordered(),

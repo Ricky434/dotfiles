@@ -29,6 +29,11 @@ return {
               default_workspace = "notes",
             },
           },
+          ["core.journal"] = {
+            config = {
+              strategy = "flat",
+            },
+          },
         },
       }
 
