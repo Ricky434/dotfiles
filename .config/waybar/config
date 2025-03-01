@@ -66,9 +66,10 @@
 	},
 
 	"clock#time": {
-		"interval": 10,
+		"interval": 1,
 		"format": "{:%H:%M}",
-		"tooltip": false,
+		"tooltip": true,
+		"tooltip-format": "{:%H:%M:%S}",
 		"timezone": "Europe/Rome"
 	},
 
@@ -112,11 +113,8 @@
 	},
 
 	"hyprland/language": {
-		"format": " {}",
-		"min-length": 4,
+		"format": " {short} {variant}",
 		"on-click": "hyprctl switchxkblayout keychron-keychron-q1 next",
-		"format-en": "us",
-		"format-en-intl": "intl",
 		"keyboard-name": "keychron-keychron-q1",
 	},
 
