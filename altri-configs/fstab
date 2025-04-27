@@ -2,24 +2,24 @@
 # See fstab(5) for details.
 
 # <file system> <dir> <type> <options> <dump> <pass>
-# /dev/sda2 - Root
-UUID=90561f19-d06b-4443-90df-36264d4b189c	/             ext4      rw,relatime	0 1
 
-# /dev/sda1 - Boot
-UUID=22C9-41B8      				/boot/efi     vfat      rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+# /dev/nvme0n1p3 - Root
+UUID=af739840-a3a3-46c3-9fb7-fd6cd7093d87	    /             ext4      rw,relatime	0 1
 
-# /swapfile
-/swapfile					none	      swap	defaults 0 0
+# /dev/nvme0n1p1 - Boot
+UUID=50F9-4A75      				            /boot/efi     vfat      rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
 
-# /dev/sdc2 (C:)
-UUID=FEFEF1A1FEF151FF                           /mnt/chicken  ntfs      defaults,noatime 0 2
+# /dev/nvme0n1p2 (Swap)
+UUID=411671e3-fc4f-41f2-9cfa-88e54f728e0c	    none	      swap	    defaults 0 0
 
-# /dev/sdc4 (Vulture)
-UUID=e0f3edd8-0dc2-4a88-9ae6-37434824ced1       /mnt/vulture  ext4      defaults,noatime 0 2
+# /dev/sdc1 (Sparrow)
+UUID=e95c3304-49aa-4dd7-a1d3-140a1cf1f205       /mnt/sparrow  ext4      defaults,noatime 0 2
 
+# /dev/sdc2 (Vulture)
+UUID=ea549a4b-f253-47bc-8a7f-905878012826       /mnt/vulture  ext4      defaults,noatime 0 2
 
-# /dev/sdd2 (D:)
-UUID=B47AAC9C7AAC5D3C                           /mnt/duck     ntfs      defaults,noatime 0 2
+# /dev/sda2 (D:)
+UUID=B47AAC9C7AAC5D3C                           /mnt/duck     ntfs      defaults,uid=1000,gid=1000,noatime 0 2
 
-# /dev/sdb2 (E:)
-UUID=1474FDDC74FDC092                           /mnt/emu     ntfs      defaults,noatime 0 2
+# /dev/sdd2 (E:)
+UUID=1474FDDC74FDC092                           /mnt/emu      ntfs      defaults,uid=1000,gid=1000,noatime 0 2
