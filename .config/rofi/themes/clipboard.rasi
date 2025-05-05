@@ -1,17 +1,18 @@
 configuration {
 	matching: "normal";
 	modi: "emoji:~/.config/rofi/scripts/emoji.sh,drun";
+
 	emoji {
 		display-name: "😄 Emoji";
 	}
+
 	drun {
 		display-name: "󰀻 Drun";
 	}
+
 	disable-history: true;
 	sidebar-mode: true;
 }
 
 @theme "/dev/null"
 @import "styles/spotlight.rasi"
-
-/* vim:ft=css

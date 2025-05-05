@@ -1,12 +1,10 @@
 configuration {
 	font: "JetBrainsMono Nerd Font, Medium 10";
-    	icon-theme: "Papirus-Dark";
-    	application-fallback-icon: "application-default-icon";
-    	scroll-method: 1;
-		show-icons: true;
-    	/* fixed-num-lines: false; */
+	icon-theme: "Papirus-Dark";
+	application-fallback-icon: "application-default-icon";
+	scroll-method: 1;
+	show-icons: true;
+	/* fixed-num-lines: false; */
 }
 
-@theme "themes/clipboard.rasi"
-
-/* vim:ft=css
+@theme "themes/prompt.rasi"

@@ -1,10 +1,11 @@
 configuration {
-	modi: "drun,run,emoji";
-	display-drun : "󰀻 DRun";
-	display-run : "  Run";
+	modi: "drun,run,filebrowser,emoji";
+	display-drun: "󰀻 DRun";
+	display-run: "  Run";
+	display-emoji: "😄 Emoji";
 	display-filebrowser: " FileBrowser";
 	matching: "prefix";
-    	drun-match-fields: "name,generic";
+	drun-match-fields: "name,generic";
 	sidebar-mode: true;
 	show-icons: true;
 	disable-history: false;
@@ -12,5 +13,3 @@ configuration {
 
 @theme "/dev/null"
 @import "styles/spotlight.rasi"
-
-/* vim:ft=css

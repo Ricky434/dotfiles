@@ -1,9 +1,9 @@
 @import "colorschemes/onedark.rasi"
 
 * {
-  background-color: @background;
-  border-color: @border;
-  text-color: @foreground;
+	background-color: @background;
+	border-color: @border;
+	text-color: @foreground;
 }
 
 window {
@@ -11,6 +11,7 @@ window {
 	/* anchor: north;
 	y-offset: 180px; */
 	width: 648px;
+	height: 772px;
 	border-radius: 6px;
 	background-color: rgba(0, 0, 0, 0.4);
 }
@@ -23,10 +24,12 @@ mainbox {
 }
 
 inputbar {
-  children: [button-left,entry,num-filtered-rows,textbox-num-sep,num-rows];
+	children: [button-left, entry, num-filtered-rows, textbox-num-sep, num-rows];
 }
 
-button-left, prompt, entry {
+button-left,
+prompt,
+entry {
 	font: "JetBrainsMono Nerd Font 14";
 	vertical-align: 0.5;
 }
@@ -39,32 +42,32 @@ button-left {
 }
 
 prompt {
-  padding: 0px 16px;
+	padding: 0px 16px;
 }
 
 entry {
-  blink: true;
-  placeholder-color: @selected;
-  placeholder: "Search";
-  padding: 16px 0;
+	blink: true;
+	placeholder-color: @selected;
+	placeholder: "Search";
+	padding: 16px 0;
 }
 
 textbox {
-  background-color: @border;
-  padding: 8px 16px;
+	background-color: @border;
+	padding: 8px 16px;
 }
 
 listview {
-  lines: 15;
-  /* columns: 2; */
-  cycle: false;
-  /* scrollbar: true;
-  dynamic: true;
-  fixed-height: false; */
-  margin: 0px 10px 10px;
-  border-radius: 5px;
-  background-color: @background-alt;
-  spacing: 0px;
+	lines: 15;
+	/* columns: 2; */
+	cycle: false;
+	/* scrollbar: true;
+	dynamic: true;
+	fixed-height: false; */
+	margin: 0px 10px 10px;
+	border-radius: 5px;
+	background-color: @background-alt;
+	spacing: 0px;
 }
 
 scrollbar {
@@ -74,20 +77,20 @@ scrollbar {
 }
 
 element {
-  padding: 10px;
-  background-color: @background-alt;
+	padding: 10px;
+	background-color: @background-alt;
 }
 
 element-icon {
-  background-color: inherit;
-  padding: 0 10px 0 0;
-  size: 24px;
+	background-color: inherit;
+	padding: 0 10px 0 0;
+	size: 24px;
 }
 
 element-text {
-  background-color: inherit;
-  text-color:       inherit;
-  vertical-align: 0.5;
+	background-color: inherit;
+	text-color: inherit;
+	vertical-align: 0.5;
 }
 
 element normal.urgent,
@@ -138,33 +141,32 @@ mode-switcher {
 }
 
 button {
-    border-radius: 0px 0px 5px 5px;
-    padding: 10px;
-    vertical-align: 0.5;
-    horizontal-align: 0.5;
+	border-radius: 0px 0px 5px 5px;
+	padding: 10px;
+	vertical-align: 0.5;
+	horizontal-align: 0.5;
 }
 
 button selected {
-  background-color: @background-alt;
+	background-color: @background-alt;
 }
 
 num-filtered-rows {
-    vertical-align: 0.5;
-    expand:     false;
-    text-color: @selected;
+	vertical-align: 0.5;
+	expand: false;
+	text-color: @selected;
 }
 
 num-rows {
-    padding: 0 16px 0 0;
-    vertical-align: 0.5;
-    expand:     false;
-    text-color: @selected;
+	padding: 0 16px 0 0;
+	vertical-align: 0.5;
+	expand: false;
+	text-color: @selected;
 }
 
 textbox-num-sep {
-    vertical-align: 0.5;
-    expand:     false;
-    str:        "/";
-    text-color: @selected;
+	vertical-align: 0.5;
+	expand: false;
+	str: "/";
+	text-color: @selected;
 }
-/* vim:ft=css
