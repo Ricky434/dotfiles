@@ -8,8 +8,11 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
---  allows to paste multiple times over some text without copying it
-vim.keymap.set("x", "<leader>p", "\"_dP")
+-- remember that by default P in visual mode pastes
+-- without updating the default register
+
+-- paste last yank
+vim.keymap.set("x", "<leader>p", "\"0p")
 
 vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
@@ -22,4 +25,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Disable space since it will be used as leader
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+vim.keymap.set('n', 'X', '<Nop>')
 vim.keymap.set('n', 'XX', ':w<Return>', {desc = 'save'})
+
+vim.keymap.set('n', 's', '<Nop>')
