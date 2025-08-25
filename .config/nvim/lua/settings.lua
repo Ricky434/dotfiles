@@ -38,7 +38,6 @@ vim.opt.foldtext = ""
 vim.opt.foldlevel = 99
 vim.o.fillchars = [[fold: ,foldopen:┬,foldclose:─,foldsep:┆]]
 
-
 -- Execute .nvim.lua/.nvimrc/.exrc file in project directory
 -- Only works for trusted files
 vim.opt.exrc = true

@@ -112,7 +112,7 @@ local on_attach = function(_, bufnr)
     -- handlers set up in lsp config don't work anymore 
     -- (they work only for server->client requests, but hover is client->server)
     -- setting vim.o.winborder breaks telescope
-    nmap('K', function() vim.lsp.buf.hover({border="rounded"}) end, 'Hover Documentation') 
+    nmap('K', function() vim.lsp.buf.hover({border="rounded"}) end, 'Hover Documentation')
     nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
     -- Lesser used LSP functionality
