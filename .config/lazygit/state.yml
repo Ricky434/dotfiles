@@ -1,0 +1,19 @@
+lastupdatecheck: 0
+recentrepos:
+    - /home/jelly/AltreCose/dotfiles
+    - /home/jelly/Downloads/Uni/RobatesiMagistrale/linux
+    - /home/jelly/vs-projects/sitoWow
+    - /home/jelly/Downloads/Uni/Tesi-magistrale/Mptcp-tests
+    - /home/jelly/Downloads/qmk_firmware
+    - /home/jelly/Downloads/mac/ultimate-macOS-KVM
+    - /home/jelly/AltreCose/vfio
+    - /home/jelly/.config/nvim
+    - /home/jelly/vs-projects/racing-leaderboard
+    - /home/jelly/vs-projects/rust/rustchat
+    - /home/jelly/vs-projects/rust/rustchat-threads
+startuppopupversion: 5
+didshowhunkstaginghint: true
+lastversion: 0.54.2
+customcommandshistory:
+    - q
+hidecommandlog: false
