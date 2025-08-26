@@ -11,6 +11,7 @@ return {
         path = "~/Random/vimwiki/",
         path_html = "~/Random/vimwiki/html/",
         syntax = "default",
+        nested_syntaxes = { python = "python", c = "c" },
         ext = ".wiki",
         auto_export = 0,
         auto_toc = 0,
