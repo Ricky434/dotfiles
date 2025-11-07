@@ -19,6 +19,11 @@ return {
                 FoldColumn = {fg = '$light_grey', bg = '$transparent' and '$none' or '$bg'},
                 TroubleNormal = { bg = '$bg0' },
                 TroubleNormalNC = { bg = '$bg0' },
+                OilGitAdded = { fg = "$cyan" },
+                OilGitModified = { fg = "$yellow" },
+                OilGitRenamed = { fg = "$red" },
+                OilGitUntracked = { fg = "$green" },
+                OilGitIgnored = { fg = "$grey" },
             },
         }
         require('onedark').load()

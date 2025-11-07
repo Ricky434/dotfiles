@@ -21,9 +21,7 @@ return {
                 { buffer = bufnr, desc = 'Toggle line change highlight' })
 
             vim.keymap.set('n', '<leader>gga', require('gitsigns').stage_hunk,
-                { buffer = bufnr, desc = 'Stage git hunk' })
-            vim.keymap.set('n', '<leader>ggu', require('gitsigns').undo_stage_hunk,
-                { buffer = bufnr, desc = 'Unstage git hunk' })
+                { buffer = bufnr, desc = 'Stage/Unstage git hunk' })
             vim.keymap.set('n', '<leader>ggr', require('gitsigns').reset_hunk,
                 { buffer = bufnr, desc = 'Reset git hunk' })
 
