@@ -2,7 +2,8 @@ return {
   'vimwiki/vimwiki',
   init = function ()
     vim.g.vimwiki_ext2syntax = {
-        [".wiki"] = "default"
+        [".wiki"] = "default",
+        [".txt"] = "default",
     }
 
     vim.g.vimwiki_list = {
