@@ -10,13 +10,19 @@ BCYAN='\e[1;36m'
 BWHITE='\e[1;34m'
 
 # Dot
-DOT=" ${BBLUE}*${NC}"
-CDOT=" ${BCYAN}*${NC}"
+DOT="${BBLUE}*${NC}"
+CDOT="${BCYAN}*${NC}"
+YDOT="${BYELLOW}*${NC}"
+GDOT="${BGREEN}*${NC}"
 
 # List
-echo "\n ${BMAGENTA}TODO${NC}:
-${DOT} Nulla, per ora...
+echo "
+ ${BMAGENTA}Todo${NC}:
+ ${DOT} Nulla per ora...
 "
-#${DOT} Nulla, per ora...
-#echo "${BRED}VOGLIO${NC}:
+#echo "
+# ${BRED}VOGLIO${NC}:
 #"
+#
+
+#${BRED}Masked packages${NC}:

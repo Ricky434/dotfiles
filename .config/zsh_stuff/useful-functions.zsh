@@ -44,3 +44,15 @@ tmuxLs() {
   fi
   echo
 }
+
+#==== Open neovim in a dir and change to that dir
+function nvimd() {
+  if [ $# -ne 1 ]; then
+    echo "Usa nvim"
+  elif [ -d "$1" ]; then
+    cd "$1"
+    nvim .
+  else
+    nvim "$1"
+  fi
+}
