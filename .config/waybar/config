@@ -6,9 +6,11 @@
 
 	"modules-left": [
 		"hyprland/workspaces",
+		"niri/workspaces",
 		"river/tags",
 		"custom/arrow10",
 		"hyprland/window",
+		"niri/window",
 		"river/window"
 	],
 
@@ -114,13 +116,13 @@
 
 	"hyprland/language": {
 		"format": " {short} {variant}",
-		"on-click": "hyprctl switchxkblayout keychron-keychron-q1 next",
-		"keyboard-name": "keychron-keychron-q1",
+		"on-click": "hyprctl switchxkblayout keychron-keychron-q1-keyboard next",
+		"keyboard-name": "keychron-keychron-q1-keyboard",
 	},
 
 	"memory": {
 		"interval": 1,
-		"format": " {used}G/{total}G",
+		"format": " {used}G/{total}G",
 		"states": {
 			"warning": 70,
 			"critical": 90
@@ -130,8 +132,9 @@
 
 	"network": {
 		"interval": 5,
+		"family": "ipv4",
 		"format-wifi": "󰖩 {ifname}  {bandwidthUpBytes}  {bandwidthDownBytes}",
-		"format-ethernet": " {ifname}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+		"format-ethernet": "󰈀 {ifname}  {bandwidthUpBytes}  {bandwidthDownBytes}",
 		"format-disconnected": "No connection",
 		"format-alt": " {ipaddr}/{cidr}",
 		"tooltip-format-wifi": "{essid}"
@@ -157,7 +160,7 @@
 		"format-muted": "",
 		"format-icons": ["", ""],
 		"scroll-step": 1,
-		"on-click": "pulseaudio-control --node-blacklist 'alsa_output.pci-0000_25_00.1.hdmi-stereo-extra3' next-node",
+		"on-click": "pulseaudio-control next-node",
 		"on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
 		"on-click-right": "pavucontrol",
 		"tooltip": "{node_name}"
