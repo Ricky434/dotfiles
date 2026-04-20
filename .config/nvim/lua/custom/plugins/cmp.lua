@@ -19,6 +19,9 @@ return {
         -- Source for buffer
         -- Don't know if needed, with CTRL-P in insert mode you get those
         'hrsh7th/cmp-buffer',
+        --
+        -- -- Wordlist dictionary
+        -- 'uga-rosa/cmp-dictionary',
     },
     config = function()
         local cmp = require 'cmp'
@@ -26,6 +29,16 @@ return {
         require('luasnip.loaders.from_vscode').lazy_load()
         luasnip.config.setup {}
 
+        -- require("cmp_dictionary").setup({
+        --     exact_length = 2,
+        --     first_case_insensitive = true,
+        --     max_number_items = 10,
+        --     external = { -- requires plenary
+        --         enable = true,
+        --         command = { "look", "${prefix}", "${path}" },
+        --     },
+        -- })
+        --
         cmp.setup {
             preselect = cmp.PreselectMode.None,
             snippet = {
@@ -75,10 +88,11 @@ return {
                 { name = 'buffer' },
                 { name = 'neorg' },
                 { name = 'vimtex' },
+                -- { name = 'dictionary', keyword_length = 2 },
             },
             window = {
-                completion = cmp.config.window.bordered(),
-                documentation = cmp.config.window.bordered(),
+                completion = cmp.config.window.bordered({ border = 'rounded' }),
+                documentation = cmp.config.window.bordered({ border = 'rounded' }),
             },
         }
     end,
