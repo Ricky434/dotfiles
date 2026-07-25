@@ -63,7 +63,7 @@
 #waybar {
 	background: rgba(40, 40, 40, 0.8784313725); /* #282828e0 */
 	color: @white;
-	font-family: JetBrains Mono, Siji;
+	font-family: JetBrainsMono Nerd Font, Siji;
 	font-size: 10pt;
 	/*font-weight: bold;*/
 }
@@ -121,8 +121,8 @@
 /* Workspaces stuff */
 #workspaces button {
 	/*font-weight: bold;*/
-	padding-left: 2pt;
-	padding-right: 2pt;
+	padding-left: 4pt;
+	padding-right: 4pt;
 	color: @white;
 	background: @unfocused;
 }
@@ -191,7 +191,9 @@
 
 window#waybar.fullscreen #window{
     font-weight: bolder;
-    color: #c490d1;
+    /* color: #be8a59; */
+    /* color: #3da1f2; */
+    color: #61afef;
 }
 
 #wireplumber {
@@ -320,9 +322,48 @@ window#waybar.fullscreen #window{
 }
 
 /* Restore most of the Adwaita teme for tray menus */
+/* #tray * { */
+/*     font-family: "Cantarell"; */
+/*     font-size: 14.66666px; */
+/* } */
+/**/
+/* #tray decoration { */
+/* 	border-top-left-radius: 8px; */
+/* 	border-top-right-radius: 8px; */
+/* } */
+/**/
+/* #tray check { */
+/* 	min-height: 14px; */
+/* 	min-width: 14px; */
+/* 	border-radius: 3px; */
+/* } */
+/**/
+/* #tray menu { */
+/* 	padding-bottom: 4px; */
+/* 	border-top-left-radius: 8px; */
+/* 	border-top-right-radius: 8px; */
+/*     background: rgb(47,47,47); */
+/*     color: rgb(238,238,256); */
+/* } */
+/**/
+/* #tray menuitem { */
+/* 	padding-left: 6px; */
+/* 	padding-right: 6px; */
+/* 	padding-top: 4px; */
+/* 	padding-bottom: 4px; */
+/* } */
+/**/
+/* #tray arrow { */
+/* 	border-top-left-radius: 5px; */
+/* 	border-top-right-radius: 5px; */
+/* 	padding: 4px; */
+/* 	min-height: 16px; */
+/* } */
+
+/* Tray context menu*/
 #tray * {
     font-family: "Cantarell";
-    font-size: 14.66666px;
+    font-size: 13px;
 }
 
 #tray decoration {
@@ -338,10 +379,7 @@ window#waybar.fullscreen #window{
 
 #tray menu {
 	padding-bottom: 4px;
-	border-top-left-radius: 8px;
-	border-top-right-radius: 8px;
-    background: rgb(47,47,47);
-    color: rgb(238,238,256);
+	border-radius: 8px;
 }
 
 #tray menuitem {
