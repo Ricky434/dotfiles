@@ -146,11 +146,14 @@
 		"tooltip": false,
 		"separate-outputs": true,
 		"on-click": "hyprctl dispatch layoutmsg cyclenext",
+		//"on-click": "hyprctl dispatch 'hl.dsp.window.cycle_next({ next = true })'", // per quando usero' lua
 	},
 
 	"hyprland/workspaces": {
 		"on-scroll-up": "hyprctl dispatch workspace m+1",
 		"on-scroll-down": "hyprctl dispatch workspace m-1",
+		// "on-scroll-up": "hyprctl dispatch \"hl.dsp.focus({ workspace = 'm+1' })\"", // per quando usero' lua
+		// "on-scroll-down": "hyprctl dispatch \"hl.dsp.focus({ workspace = 'm-1' })\"", // per quando usero' lua
 		"format": "{name}"
 	},
 
